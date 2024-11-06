@@ -119,6 +119,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="LED"
+    //% weight=100
     //% advanced=true
     export function ledWriteBool(port: Ports, state: boolean) {
         if (state == true) {
