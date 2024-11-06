@@ -75,6 +75,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="Tlačítko"
+    //% advanced=true
     export function btnNumber(port: Ports): number {
         return 1 - pins.digitalReadPin(digitalPins[port - 1]);
     }
@@ -118,6 +119,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="LED"
+    //% advanced=true
     export function ledWriteBool(port: Ports, state: boolean) {
         if (state == true) {
             pins.digitalWritePin(digitalPins[port - 1], 1);
@@ -153,6 +155,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="LED"
+    //% advanced=true
     export function ledToggle(port: Ports) {
         if (leds[port - 1]) {
             pins.digitalWritePin(digitalPins[port - 1], 0);
@@ -271,6 +274,7 @@ namespace zacatecnik {
      */
     //% block="OLED vykresli text $text (bez ukončení řádku)"
     //% group="OLED"
+    //% advanced=true
     export function oledWriteTextNB(text: string) {
         OLED.writeString(text);
     }
@@ -281,6 +285,7 @@ namespace zacatecnik {
      */
     //% block="OLED vykresli číslo $value (bez ukončení řádku)"
     //% group="OLED"
+    //% advanced=true
     export function oledWriteNumNB(value: number) {
         OLED.writeNum(value);
     }
@@ -363,6 +368,7 @@ namespace zacatecnik {
      */
     //% block="BME vypni"
     //% group="BME"
+    //% advanced=true
     export function bmePowerOff() {
         BME280.PowerOff();
     }
@@ -372,6 +378,7 @@ namespace zacatecnik {
      */
     //% block="BME zapni"
     //% group="BME"
+    //% advanced=true
     export function bmePowerOn() {
         BME280.PowerOn();
     }
@@ -392,6 +399,7 @@ namespace zacatecnik {
      */
     //% block="COLOR barva"
     //% group="Senzor barvy"
+    //% advanced=true
     export function apdsGetColor(): number {
         control.inBackground(function () {
             while (!apds9960.Data_Ready()) {
