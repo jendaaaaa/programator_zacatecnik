@@ -407,11 +407,6 @@ namespace zacatecnik {
     //% block="COLOR získat úroveň osvícení"
     //% group="Senzor barvy"
     export function apdsGetAmbient(): number {
-        control.inBackground(function () {
-            while (!apds9960.Data_Ready()) {
-                //
-            }
-        })
         return Math.floor(apds9960.Read_Ambient()*1000)/1000;
     }
     
@@ -422,22 +417,17 @@ namespace zacatecnik {
     //% group="Senzor barvy"
     export function apdsGetSpecificColor(color: ColorsRGB): number {
         let value = 0;
-        control.inBackground(function () {
-            while (!apds9960.Data_Ready()) {
-                //
-            }
-            switch (color) {
-                case ColorsRGB.Red:
-                    value = apds9960.Read_Red();
-                    break;
-                case ColorsRGB.Green:
-                    value = apds9960.Read_Green();
-                    break;
-                case ColorsRGB.Blue:
-                    value = apds9960.Read_Blue();
-                    break;
-            }
-        })
+        switch (color) {
+            case ColorsRGB.Red:
+                value = apds9960.Read_Red();
+                break;
+            case ColorsRGB.Green:
+                value = apds9960.Read_Green();
+                break;
+            case ColorsRGB.Blue:
+                value = apds9960.Read_Blue();
+                break;
+        };
         return Math.floor(value*1000)/1000;
     }
 
