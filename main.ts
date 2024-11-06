@@ -37,7 +37,7 @@ const analogPins = [AnalogPin.P2, AnalogPin.P1, AnalogPin.P0, AnalogPin.P3];
  * Provides easier use of basic hardware modules available at omgrobotics.com.
  */
 //% color=#f5a017 icon="\uf135" block="Začátečník"
-//% groups="['Inicializace','Tlačítko', 'LED', 'Potenciometr', 'Motor', 'Optický a UV senzor', 'BME', 'Senzor barvy', 'OLED', 'Neopixel']"
+//% groups="['Tlačítko', 'LED', 'Potenciometr', 'Motor', 'Optický a UV senzor', 'BME', 'Senzor barvy', 'OLED', 'Neopixel']"
 namespace zacatecnik {
 
     // leds array for toggleLED function
@@ -53,7 +53,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="Tlačítko"
-    export function boolBtn(port: Ports): boolean {
+    export function btnBool(port: Ports): boolean {
         return pins.digitalReadPin(digitalPins[port - 1]) == 0 ? true : false;
     }
 
@@ -66,7 +66,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="Tlačítko"
-    export function numberBtn(port: Ports): number {
+    export function btnNumber(port: Ports): number {
         return 1 - pins.digitalReadPin(digitalPins[port - 1]);
     }
 
@@ -80,7 +80,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="LED"
-    export function plotLED(port: Ports) {
+    export function ledPlot(port: Ports) {
         pins.digitalWritePin(digitalPins[port - 1], 1);
         leds[port - 1] = true;
     }
@@ -94,7 +94,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="LED"
-    export function unplotLED(port: Ports) {
+    export function ledUnplot(port: Ports) {
         pins.digitalWritePin(digitalPins[port - 1], 0);
         leds[port - 1] = false;
     }
@@ -109,7 +109,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="LED"
-    export function writeBoolLED(port: Ports, state: boolean) {
+    export function ledWriteBool(port: Ports, state: boolean) {
         if (state == true) {
             pins.digitalWritePin(digitalPins[port - 1], 1);
             leds[port - 1] = true;
@@ -131,7 +131,7 @@ namespace zacatecnik {
     //% level.max=1023
     //% level.min=0
     //% group="LED"
-    export function writeNumberLED(port: Ports, level: number) {
+    export function ledWriteNumber(port: Ports, level: number) {
         pins.analogWritePin(pseudoanalogPins[port - 1], level);
     }
 
@@ -144,7 +144,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="LED"
-    export function toggleLED(port: Ports) {
+    export function ledToggle(port: Ports) {
         if (leds[port - 1]) {
             pins.digitalWritePin(digitalPins[port - 1], 0);
             leds[port - 1] = false;
@@ -164,7 +164,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="Pot"
-    export function readValuePot(port: Ports): number {
+    export function potReadValue(port: Ports): number {
         if (port != 4) {
             return 1023 - pins.analogReadPin(analogPins[port - 1]);
         }
@@ -181,7 +181,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="Motor"
-    export function turnOnMotor(port: Ports) {
+    export function motorPowerOn(port: Ports) {
         pins.digitalWritePin(digitalPins[port - 1], 1);
     }
 
@@ -194,7 +194,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="Motor"
-    export function turnOffMotor(port: Ports) {
+    export function motorPowerOff(port: Ports) {
         pins.digitalWritePin(digitalPins[port - 1], 0);
     }
 
@@ -208,7 +208,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="Motor"
-    export function setMotor(port: Ports, level: number) {
+    export function motorSetLevel(port: Ports, level: number) {
         pins.analogWritePin(pseudoanalogPins[port - 1], level);
     }
 
@@ -222,7 +222,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="Senzor barvy"
-    export function readOpticalSensor(port: Ports): boolean {
+    export function opticalSensorRead(port: Ports): boolean {
         return pins.digitalReadPin(digitalPins[port - 1]) == 0 ? true : false;
     }
 
@@ -232,7 +232,7 @@ namespace zacatecnik {
      */
     //% block="OLED nastavit"
     //% group="OLED"
-    export function initOled() {
+    export function oledInit() {
         OLED.init(128, 64);
     }
 
@@ -242,7 +242,7 @@ namespace zacatecnik {
      */
     //% block="OLED vykreslit text $text"
     //% group="OLED"
-    export function writeTextOled(text: string) {
+    export function oledWriteText(text: string) {
         OLED.writeStringNewLine(fillWithBlanks(text));
     }
 
@@ -252,7 +252,7 @@ namespace zacatecnik {
      */
     //% block="OLED vykreslit číslo $value"
     //% group="OLED"
-    export function writeNumOled(value: number) {
+    export function oledWriteNum(value: number) {
         OLED.writeStringNewLine(fillWithBlanks(value.toString()));
     }
 
@@ -262,7 +262,7 @@ namespace zacatecnik {
      */
     //% block="OLED vykreslit text $text (bez ukončení řádku)"
     //% group="OLED"
-    export function writeTextNBOled(text: string) {
+    export function oledWriteTextNB(text: string) {
         OLED.writeString(text);
     }
 
@@ -272,7 +272,7 @@ namespace zacatecnik {
      */
     //% block="OLED vykreslit číslo $value (bez ukončení řádku)"
     //% group="OLED"
-    export function writeNumNBOled(value: number) {
+    export function oledWriteNumNB(value: number) {
         OLED.writeNum(value);
     }
     
@@ -281,7 +281,7 @@ namespace zacatecnik {
      */
     //% block="OLED smazat"
     //% group="OLED"
-    export function clearOled() {
+    export function oledClear() {
         OLED.clear();
     }
 
@@ -300,7 +300,7 @@ namespace zacatecnik {
      */
     //% block="BME nastavit"
     //% group="BME"
-    export function initBme() {
+    export function bmeInit() {
         BME280.Address(BME280_I2C_ADDRESS.ADDR_0x76);
     }
 
@@ -366,5 +366,32 @@ namespace zacatecnik {
     export function bmePowerOn() {
         BME280.PowerOn();
     }
+
+    //////////////////////////////////////////////////////////////////// APDS9960
+    /**
+     * Inicializace (nastavení) COLOR bločku (senzoru barvy) pro aktivování I2C komunikace.
+     */
+    //% block="COLOR nastavit"
+    //% group="Senzor barvy"
+    export function apdsInit() {
+        apds9960.Init(11.12);
+        apds9960.ColorMode();
+    }
+    
+    /**
+     * Získání hodnoty barvy okolí. Výstupem je hodnota Hue z barevného prostoru HSV.
+     */
+    //% block="COLOR získat barvu"
+    //% group="Senzor barvy"
+    export function apdsGetColor(): number {
+        control.inBackground(function () {
+            while (!apds9960.Data_Ready()) {
+                //
+            }
+        })
+        return apds9960.ReadColor();
+    }
+
+
 
 }
