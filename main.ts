@@ -57,7 +57,7 @@ namespace zacatecnik {
      * Zjištění logické hodnoty tlačítka na daném portu.
      * @param port číslo portu
      */
-    //% block="$port tlačítko zmáčknuto"
+    //% block="tlačítko zmáčknuto $port"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -70,7 +70,7 @@ namespace zacatecnik {
      * Zjištění číselné hodnoty tlačítka na daném portu.
      * @param port číslo portu
      */
-    //% block="$port číselná hodnota tlačítka"
+    //% block="číselná hodnota tlačítka $port"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -85,7 +85,7 @@ namespace zacatecnik {
      * Rozsvícení LED na daném portu.
      * @param port číslo portu
      */
-    //% block="$port rozsviť LED"
+    //% block="rozsviť LED $port"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -100,7 +100,7 @@ namespace zacatecnik {
      * Zhasnutí LED na daném portu.
      * @param port číslo portu
      */
-    //% block="$port zhasni LED"
+    //% block="zhasni LED $port"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -116,7 +116,7 @@ namespace zacatecnik {
      * @param port číslo portu
      * @param state logická hodnota
      */
-    //% block="$port rozsviť LED? $state"
+    //% block="rozsviť LED $port? $state"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -138,7 +138,7 @@ namespace zacatecnik {
      * @param port číslo portu
      * @param level číselná hodnota (0-1023)
      */
-    //% block="$port zapiš do LED číslo $level"
+    //% block="zapiš do LED $port číslo $level"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -153,7 +153,7 @@ namespace zacatecnik {
      * Přepnutí led na daném portu. Pokud je LED zapnuta, po zavolání této funkce se vypne (a naopak).
      * @param port číslo portu
      */
-    //% block="$port přepni LED"
+    //% block="přepni LED $port"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -174,7 +174,7 @@ namespace zacatecnik {
      * Čtení hodnoty potenciometru na daném portu v rozmezí 0-1023.
      * @param port číslo portu
      */
-    //% block="$port číslo z potenciometru"
+    //% block="číslo z potenciometru $port"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
