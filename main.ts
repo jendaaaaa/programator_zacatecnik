@@ -29,6 +29,15 @@ enum ModuleType {
     IRSensor
 }
 
+enum ColorsRGB {
+    //% block="Červená"
+    Red = 0,
+    //% block="Zelená"
+    Green,
+    //% block="Modrá"
+    Blue
+}
+
 const digitalPins = [DigitalPin.P14, DigitalPin.P13, DigitalPin.P8, DigitalPin.P15];
 const pseudoanalogPins = [AnalogPin.P14, AnalogPin.P13, AnalogPin.P8, AnalogPin.P15];
 const analogPins = [AnalogPin.P2, AnalogPin.P1, AnalogPin.P0, AnalogPin.P3];
@@ -407,45 +416,29 @@ namespace zacatecnik {
     }
     
     /**
-     * Získání hodnoty červeného světla v okolí. Výstupem je hodnota v rozmezí 0-255.
+     * Měření dané barvy v okolním světle. Výstupem je hodnota v rozmezí 0-255.
      */
-    //% block="COLOR získat hodnotu červeného světla"
+    //% block="COLOR získat hodnotu|$color"
     //% group="Senzor barvy"
-    export function apdsGetRed(): number {
+    export function apdsGetSpecificColor(color: ColorsRGB): number {
+        let value = 0;
         control.inBackground(function () {
             while (!apds9960.Data_Ready()) {
                 //
             }
-        })
-        return Math.floor(apds9960.Read_Red()*1000)/1000;
-    }
-    
-    /**
-     * Získání hodnoty modrého světla v okolí. Výstupem je hodnota v rozmezí 0-255.
-     */
-    //% block="COLOR získat hodnotu modrého světla"
-    //% group="Senzor barvy"
-    export function apdsGetBlue(): number {
-        control.inBackground(function () {
-            while (!apds9960.Data_Ready()) {
-                //
+            switch (color) {
+                case ColorsRGB.Red:
+                    value = apds9960.Read_Red();
+                    break;
+                case ColorsRGB.Green:
+                    value = apds9960.Read_Green();
+                    break;
+                case ColorsRGB.Blue:
+                    value = apds9960.Read_Blue();
+                    break;
             }
         })
-        return Math.floor(apds9960.Read_Blue()*1000)/1000;
-    }
-    
-    /**
-     * Získání hodnoty zeleného světla v okolí. Výstupem je hodnota v rozmezí 0-255.
-     */
-    //% block="COLOR získat hodnotu zeleného světla"
-    //% group="Senzor barvy"
-    export function apdsGetGreen(): number {
-        control.inBackground(function () {
-            while (!apds9960.Data_Ready()) {
-                //
-            }
-        })
-        return Math.floor(apds9960.Read_Green()*1000)/1000;
+        return Math.floor(value*1000)/1000;
     }
 
 }
