@@ -57,7 +57,7 @@ namespace zacatecnik {
      * Zjištění logické hodnoty tlačítka na daném portu.
      * @param port číslo portu
      */
-    //% block="$port logická hodnota tlačítka"
+    //% block="$port tlačítko zmáčknuto"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -70,7 +70,7 @@ namespace zacatecnik {
      * Zjištění číselné hodnoty tlačítka na daném portu.
      * @param port číslo portu
      */
-    //% block="$port hodnota tlačítka"
+    //% block="$port číselná hodnota tlačítka"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -84,7 +84,7 @@ namespace zacatecnik {
      * Rozsvícení LED na daném portu.
      * @param port číslo portu
      */
-    //% block="$port rozsvítit LED"
+    //% block="$port rozsviť LED"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -98,7 +98,7 @@ namespace zacatecnik {
      * Zhasnutí LED na daném portu.
      * @param port číslo portu
      */
-    //% block="$port zhasnout LED"
+    //% block="$port zhasni LED"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -113,7 +113,7 @@ namespace zacatecnik {
      * @param port číslo portu
      * @param state logická hodnota
      */
-    //% block="$port zapsat do LED stav $state"
+    //% block="$port rozsviť LED? $state"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -133,7 +133,7 @@ namespace zacatecnik {
      * @param port číslo portu
      * @param level číselná hodnota (0-1023)
      */
-    //% block="$port zapis LED uroven $level"
+    //% block="$port zapiš do LED číslo $level"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -148,7 +148,7 @@ namespace zacatecnik {
      * Přepnutí led na daném portu. Pokud je LED zapnuta, po zavolání této funkce se vypne (a naopak).
      * @param port číslo portu
      */
-    //% block="$port prepni LED"
+    //% block="$port přepni LED"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -168,7 +168,7 @@ namespace zacatecnik {
      * Čtení hodnoty potenciometru na daném portu v rozmezí 0-1023.
      * @param port číslo portu
      */
-    //% block="$port číselná hodnota potenciometru"
+    //% block="$port číslo z potenciometru"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -185,7 +185,7 @@ namespace zacatecnik {
      * Zapnutí motoru na daném portu.
      * @param port číslo portu
      */
-    //% block="$port roztočit motor"
+    //% block="$port zapni motor"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -198,7 +198,7 @@ namespace zacatecnik {
      * Vypnutí motoru na daném portu.
      * @param port číslo portu
      */
-    //% block="$port zastavit motor"
+    //% block="$port vypni motor"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -212,7 +212,7 @@ namespace zacatecnik {
      * @param port číslo portu
      * @param level číselná hodnota (0-1023)
      */
-    //% block="$port roztočit motor na hodnotu $level"
+    //% block="$port roztoč motor na hodnotu $level"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -237,29 +237,29 @@ namespace zacatecnik {
 
     //////////////////////////////////////////////////////////////////// OLED
     /**
-     * Inicializace (nastavení) OLED bločku pro aktivování I2C komunikace.
+     * Zapnutí (inicializace) OLED bločku a aktivování I2C komunikace.
      */
-    //% block="OLED nastavit"
+    //% block="OLED start"
     //% group="OLED"
     export function oledInit() {
         OLED.init(128, 64);
     }
 
     /**
-     * Vykreslení textu (String) na displej. Zbytek řádku vyplní prázdnými znaky.
+     * Vykreslení textu na displej. Zbytek řádku je vyplněn prázdnými znaky.
      * @param text text k vykreslení na displej
      */
-    //% block="OLED vykreslit text $text"
+    //% block="OLED vykresli text $text"
     //% group="OLED"
     export function oledWriteText(text: string) {
         OLED.writeStringNewLine(fillWithBlanks(text));
     }
 
     /**
-     * Vykreslení číselné hodnoty na displej. Zbytek řádku vyplní prázdnými znaky.
+     * Vykreslení číselné hodnoty na displej. Zbytek řádku je vyplněn prázdnými znaky.
      * @param value číslo k vykreslení na displej
      */
-    //% block="OLED vykreslit číslo $value"
+    //% block="OLED vykresli číslo $value"
     //% group="OLED"
     export function oledWriteNum(value: number) {
         OLED.writeStringNewLine(fillWithBlanks(value.toString()));
@@ -269,7 +269,7 @@ namespace zacatecnik {
      * Vykreslení textu na displej. Další text se vykreslí na místo následujícího znaku.
      * @param text text k vykreslení na displej
      */
-    //% block="OLED vykreslit text $text (bez ukončení řádku)"
+    //% block="OLED vykresli text $text (bez ukončení řádku)"
     //% group="OLED"
     export function oledWriteTextNB(text: string) {
         OLED.writeString(text);
@@ -279,7 +279,7 @@ namespace zacatecnik {
      * Vykreslení číselné hodnoty na displej. Další číslo se vykreslí na místo následujícího znaku.
      * @param value číslo k vykreslení na displej
      */
-    //% block="OLED vykreslit číslo $value (bez ukončení řádku)"
+    //% block="OLED vykresli číslo $value (bez ukončení řádku)"
     //% group="OLED"
     export function oledWriteNumNB(value: number) {
         OLED.writeNum(value);
@@ -288,7 +288,7 @@ namespace zacatecnik {
     /**
      * Smazání displeje.
      */
-    //% block="OLED smazat"
+    //% block="OLED smaž"
     //% group="OLED"
     export function oledClear() {
         OLED.clear();
@@ -305,9 +305,9 @@ namespace zacatecnik {
 
     //////////////////////////////////////////////////////////////////// BME280
     /**
-     * Inicializace (nastavení) BME bločku pro aktivování I2C komunikace.
+     * Zapnutí (inicializace) BME bločku a aktivování I2C komunikace.
      */
-    //% block="BME nastavit"
+    //% block="BME start"
     //% group="BME"
     export function bmeInit() {
         BME280.Address(BME280_I2C_ADDRESS.ADDR_0x76);
@@ -316,7 +316,7 @@ namespace zacatecnik {
     /**
      * Měření vlhkosti okolního vzduchu v procentech (%).
      */
-    //% block="BME změřená vlhkost"
+    //% block="BME vlhkost (%)"
     //% group="BME"
     export function bmeHumidity(): number {
         return BME280.humidity()
@@ -325,7 +325,7 @@ namespace zacatecnik {
     /**
      * Měření teploty okolního vzduchu ve stupních Celsia (°C).
      */
-    //% block="BME změřená teplota"
+    //% block="BME teplota (°C)"
     //% group="BME"
     export function bmeTemperature(): number {
         return BME280.temperature(BME280_T.T_C);
@@ -334,7 +334,7 @@ namespace zacatecnik {
     /**
      * Měření tlaku okolního vzduchu v pascalech (Pa).
      */
-    //% block="BME změřený tlak (Pa)"
+    //% block="BME tlak (Pa)"
     //% group="BME"
     export function bmeTemperaturePa(): number {
         return BME280.pressure(BME280_P.Pa);
@@ -343,7 +343,7 @@ namespace zacatecnik {
     /**
      * Měření tlaku okolního vzduchu v hektopascalech (hPa).
      */
-    //% block="BME změřený tlak (hPa)"
+    //% block="BME tlak (hPa)"
     //% group="BME"
     export function bmeTemperatureHPa(): number {
         return BME280.pressure(BME280_P.hPa);
@@ -352,7 +352,7 @@ namespace zacatecnik {
     /**
      * Měření rosného bodu okolního vzduchu ve stupních Celsia (°C).
      */
-    //% block="BME vypočítaný rosný bod (°C)"
+    //% block="BME rosný bod (°C)"
     //% group="BME"
     export function bmeDewpoint(): number {
         return BME280.Dewpoint();
@@ -361,7 +361,7 @@ namespace zacatecnik {
     /**
      * Vypnutí komunikace s modulkem BME.
      */
-    //% block="BME vypnout"
+    //% block="BME vypni"
     //% group="BME"
     export function bmePowerOff() {
         BME280.PowerOff();
@@ -370,7 +370,7 @@ namespace zacatecnik {
     /**
      * Zapnutí komunikace s modulkem BME.
      */
-    //% block="BME zapnout"
+    //% block="BME zapni"
     //% group="BME"
     export function bmePowerOn() {
         BME280.PowerOn();
@@ -378,9 +378,9 @@ namespace zacatecnik {
 
     //////////////////////////////////////////////////////////////////// APDS9960
     /**
-     * Inicializace (nastavení) COLOR bločku (senzoru barvy) pro aktivování I2C komunikace.
+     * Zapnutí (inicializace) COLOR bločku (senzoru barvy) a aktivování I2C komunikace.
      */
-    //% block="COLOR nastavit"
+    //% block="COLOR start"
     //% group="Senzor barvy"
     export function apdsInit() {
         apds9960.Init(11.12);
@@ -390,7 +390,7 @@ namespace zacatecnik {
     /**
      * Získání hodnoty barvy okolí. Výstupem je hodnota Hue z barevného prostoru HSV.
      */
-    //% block="COLOR získat barvu"
+    //% block="COLOR barva"
     //% group="Senzor barvy"
     export function apdsGetColor(): number {
         control.inBackground(function () {
@@ -404,7 +404,7 @@ namespace zacatecnik {
     /**
      * Získání úrovně osvícení okolí. Výstupem je hodnota v rozmezí 0-255.
      */
-    //% block="COLOR získat úroveň osvícení"
+    //% block="COLOR úroveň osvícení"
     //% group="Senzor barvy"
     export function apdsGetAmbient(): number {
         return Math.floor(apds9960.Read_Ambient()*1000)/1000;
@@ -413,7 +413,7 @@ namespace zacatecnik {
     /**
      * Měření dané barvy v okolním světle. Výstupem je hodnota v rozmezí 0-255.
      */
-    //% block="COLOR získat hodnotu|$color"
+    //% block="COLOR hodnota barvy|$color"
     //% group="Senzor barvy"
     export function apdsGetSpecificColor(color: ColorsRGB): number {
         let value = 0;
