@@ -1,0 +1,27 @@
+{
+    "name": "main",
+    "description": "",
+    "dependencies": {
+        "core": "*",
+        "microphone": "*",
+        "BME280": "github:makecode-extensions/bme280#v1.1.0",
+        "SSD1306_OLED": "github:tinkertanker/pxt-oled-ssd1306#v2.0.14",
+        "neopixel": "github:microsoft/pxt-neopixel#v0.7.6"
+    },
+    "files": [
+        "main.ts",
+        "README.md",
+        "apds9960.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "7.0.51",
+        "targetId": "microbit"
+    },
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "tsprj"
+}
