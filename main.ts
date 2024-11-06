@@ -57,7 +57,7 @@ namespace zacatecnik {
      * Zjištění logické hodnoty tlačítka na daném portu.
      * @param port číslo portu
      */
-    //% block="tlačítko zmáčknuto $port"
+    //% block="tlačítko $port zmáčknuto"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -191,7 +191,7 @@ namespace zacatecnik {
      * Zapnutí motoru na daném portu.
      * @param port číslo portu
      */
-    //% block="$port zapni motor"
+    //% block="zapni motor $port"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -204,7 +204,7 @@ namespace zacatecnik {
      * Vypnutí motoru na daném portu.
      * @param port číslo portu
      */
-    //% block="$port vypni motor"
+    //% block="vypni motor $port"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -218,7 +218,7 @@ namespace zacatecnik {
      * @param port číslo portu
      * @param level číselná hodnota (0-1023)
      */
-    //% block="$port roztoč motor na hodnotu $level"
+    //% block="roztoč motor $port na hodnotu $level"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -232,7 +232,7 @@ namespace zacatecnik {
      * Čtení logické hodnoty ze senzorů. Bločky vhodné k použití: Světelný senzor, IR senzor, UV senzor.
      * @param port číslo portu
      */
-    //% block="$port hodnota senzoru"
+    //% block="hodnota senzoru $port"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -440,6 +440,32 @@ namespace zacatecnik {
                 break;
         };
         return Math.floor(value*1000)/1000;
+    }
+
+    /**
+     * Získání úrovně osvícení okolí. Výstupem je hodnota v rozmezí 0-255.
+     */
+    //% block="COLOR rozsviť přídavnou LED $port"
+    //% port.fieldEditor="gridpicker"
+    //% port.fieldOptions.width=220
+    //% port.fieldOptions.columns=4
+    //% group="Senzor barvy"
+    //% advanced=true
+    export function apdsLedPowerOn(port: Ports) {
+        pins.digitalWritePin(digitalPins[port-1], 1);
+    }
+    
+    /**
+     * Získání úrovně osvícení okolí. Výstupem je hodnota v rozmezí 0-255.
+     */
+    //% block="COLOR zhasni přídavnou LED $port"
+    //% port.fieldEditor="gridpicker"
+    //% port.fieldOptions.width=220
+    //% port.fieldOptions.columns=4
+    //% group="Senzor barvy"
+    //% advanced=true
+    export function apdsLedPowerOff(port: Ports) {
+        pins.digitalWritePin(digitalPins[port-1], 0);
     }
 
 }
