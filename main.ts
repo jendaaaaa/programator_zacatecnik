@@ -389,7 +389,7 @@ namespace zacatecnik {
                 //
             }
         })
-        return apds9960.ReadColor();
+        return Math.floor(apds9960.ReadColor()*1000)/1000;
     }
 
 
