@@ -46,7 +46,7 @@ namespace zacatecnik {
     //////////////////////////////////////////////////////////////////// BUTTON
     /**
      * Zjištění logické hodnoty tlačítka na daném portu.
-     * @param číslo portu
+     * @param port číslo portu
      */
     //% block="$port logická hodnota tlačítka"
     //% port.fieldEditor="gridpicker"
@@ -57,6 +57,10 @@ namespace zacatecnik {
         return pins.digitalReadPin(digitalPins[port - 1]) == 0 ? true : false;
     }
 
+    /**
+     * Zjištění číselné hodnoty tlačítka na daném portu.
+     * @param port číslo portu
+     */
     //% block="$port hodnota tlačítka"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
@@ -67,7 +71,11 @@ namespace zacatecnik {
     }
 
     //////////////////////////////////////////////////////////////////// LED
-    //% block="$port rozsvit LED"
+    /**
+     * Rozsvícení LED na daném portu.
+     * @param port číslo portu
+     */
+    //% block="$port rozsvítit LED"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -77,7 +85,11 @@ namespace zacatecnik {
         leds[port - 1] = true;
     }
 
-    //% block="$port zhasni LED"
+    /**
+     * Zhasnutí LED na daném portu.
+     * @param port číslo portu
+     */
+    //% block="$port zhasnout LED"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -87,7 +99,12 @@ namespace zacatecnik {
         leds[port - 1] = false;
     }
 
-    //% block="$port zapis do LED stav $state"
+    /**
+     * Zapsání logické hodnoty do LED na daném portu. (pravda = svítí, lež = nesvítí)
+     * @param port číslo portu
+     * @param state logická hodnota
+     */
+    //% block="$port zapsat do LED stav $state"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -102,6 +119,11 @@ namespace zacatecnik {
         }
     }
 
+    /**
+     * Zapsání číselné hodnoty do LED na daném portu v rozmezí 0-1023.
+     * @param port číslo portu
+     * @param level číselná hodnota (0-1023)
+     */
     //% block="$port zapis LED uroven $level"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
@@ -113,6 +135,10 @@ namespace zacatecnik {
         pins.analogWritePin(pseudoanalogPins[port - 1], level);
     }
 
+    /**
+     * Přepnutí led na daném portu. Pokud je LED zapnuta, po zavolání této funkce se vypne (a naopak).
+     * @param port číslo portu
+     */
     //% block="$port prepni LED"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
@@ -129,6 +155,10 @@ namespace zacatecnik {
     }
 
     //////////////////////////////////////////////////////////////////// POTENTIOMETER
+    /**
+     * Čtení hodnoty potenciometru na daném portu v rozmezí 0-1023.
+     * @param port číslo portu
+     */
     //% block="$port uroven potenciometru"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
@@ -142,7 +172,11 @@ namespace zacatecnik {
     }
 
     //////////////////////////////////////////////////////////////////// MOTOR
-    //% block="$port roztocit motor"
+    /**
+     * Zapnutí motoru na daném portu.
+     * @param port číslo portu
+     */
+    //% block="$port roztočit motor"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -151,6 +185,10 @@ namespace zacatecnik {
         pins.digitalWritePin(digitalPins[port - 1], 1);
     }
 
+    /**
+     * Vypnutí motoru na daném portu.
+     * @param port číslo portu
+     */
     //% block="$port zastavit motor"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
@@ -160,7 +198,12 @@ namespace zacatecnik {
         pins.digitalWritePin(digitalPins[port - 1], 0);
     }
 
-    //% block="$port roztocit motor na hodnotu $level"
+    /**
+     * Zapsání číselné hodnoty do motoru na daném portu v rozmezí 0-1023.
+     * @param port číslo portu
+     * @param level číselná hodnota (0-1023)
+     */
+    //% block="$port roztočit motor na hodnotu $level"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
@@ -170,6 +213,10 @@ namespace zacatecnik {
     }
 
     //////////////////////////////////////////////////////////////////// PHOTORESISTOR,  IR, UV
+    /**
+     * Čtení logické hodnoty ze senzorů. Bločky vhodné k použití: Světelný senzor, IR senzor, UV senzor.
+     * @param port číslo portu
+     */
     //% block="$port hodnota senzoru"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
@@ -180,37 +227,59 @@ namespace zacatecnik {
     }
 
     //////////////////////////////////////////////////////////////////// OLED
+    /**
+     * Inicializace (nastavení) OLED bločku pro aktivování I2C komunikace.
+     */
     //% block="OLED nastavit"
     //% group="OLED"
     export function initOled() {
         OLED.init(128, 64);
     }
 
+    /**
+     * Vykreslení textu (String) na displej. Zbytek řádku vyplní prázdnými znaky.
+     * @param text text k vykreslení na displej
+     */
     //% block="OLED vykreslit text $text"
     //% group="OLED"
     export function writeTextOled(text: string) {
         OLED.writeStringNewLine(fillWithBlanks(text));
     }
 
-    //% block="OLED vykreslit cislo $value"
+    /**
+     * Vykreslení číselné hodnoty na displej. Zbytek řádku vyplní prázdnými znaky.
+     * @param value číslo k vykreslení na displej
+     */
+    //% block="OLED vykreslit číslo $value"
     //% group="OLED"
     export function writeNumOled(value: number) {
         OLED.writeStringNewLine(fillWithBlanks(value.toString()));
     }
 
-    //% block="OLED vykreslit text $text bez ukonceni radku"
+    /**
+     * Vykreslení textu na displej. Další text se vykreslí na místo následujícího znaku.
+     * @param text text k vykreslení na displej
+     */
+    //% block="OLED vykreslit text $text (bez ukončení řádku)"
     //% group="OLED"
     export function writeTextNBOled(text: string) {
         OLED.writeString(text);
     }
 
-    //% block="OLED vykreslit cislo $value bez ukonceni radku"
+    /**
+     * Vykreslení číselné hodnoty na displej. Další číslo se vykreslí na místo následujícího znaku.
+     * @param value číslo k vykreslení na displej
+     */
+    //% block="OLED vykreslit číslo $value (bez ukončení řádku)"
     //% group="OLED"
     export function writeNumNBOled(value: number) {
         OLED.writeNum(value);
     }
-
-    //% block="OLED vykreslit cislo $value bez ukonceni radku"
+    
+    /**
+     * Smazání displeje.
+     */
+    //% block="OLED smazat"
     //% group="OLED"
     export function clearOled() {
         OLED.clear();
