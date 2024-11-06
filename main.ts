@@ -159,7 +159,7 @@ namespace zacatecnik {
      * Čtení hodnoty potenciometru na daném portu v rozmezí 0-1023.
      * @param port číslo portu
      */
-    //% block="$port uroven potenciometru"
+    //% block="$port číselná hodnota potenciometru"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
