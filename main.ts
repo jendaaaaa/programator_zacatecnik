@@ -294,4 +294,77 @@ namespace zacatecnik {
         return str + padding;
     }
 
+    //////////////////////////////////////////////////////////////////// BME280
+    /**
+     * Inicializace (nastavení) BME bločku pro aktivování I2C komunikace.
+     */
+    //% block="BME nastavit"
+    //% group="BME"
+    export function initBme() {
+        BME280.Address(BME280_I2C_ADDRESS.ADDR_0x76);
+    }
+
+    /**
+     * Měření vlhkosti okolního vzduchu v procentech (%).
+     */
+    //% block="BME změřená vlhkost"
+    //% group="BME"
+    export function bmeHumidity(): number {
+        return BME280.humidity()
+    }
+
+    /**
+     * Měření teploty okolního vzduchu ve stupních Celsia (°C).
+     */
+    //% block="BME změřená teplota"
+    //% group="BME"
+    export function bmeTemperature(): number {
+        return BME280.temperature(BME280_T.T_C);
+    }
+
+    /**
+     * Měření tlaku okolního vzduchu v pascalech (Pa).
+     */
+    //% block="BME změřený tlak (Pa)"
+    //% group="BME"
+    export function bmeTemperaturePa(): number {
+        return BME280.pressure(BME280_P.Pa);
+    }
+    
+    /**
+     * Měření tlaku okolního vzduchu v hektopascalech (hPa).
+     */
+    //% block="BME změřený tlak (hPa)"
+    //% group="BME"
+    export function bmeTemperatureHPa(): number {
+        return BME280.pressure(BME280_P.hPa);
+    }
+    
+    /**
+     * Měření rosného bodu okolního vzduchu ve stupních Celsia (°C).
+     */
+    //% block="BME vypočítaný rosný bod (°C)"
+    //% group="BME"
+    export function bmeDewpoint(): number {
+        return BME280.Dewpoint();
+    }
+
+    /**
+     * Vypnutí komunikace s modulkem BME.
+     */
+    //% block="BME vypnout"
+    //% group="BME"
+    export function bmePowerOff() {
+        BME280.PowerOff();
+    }
+
+    /**
+     * Zapnutí komunikace s modulkem BME.
+     */
+    //% block="BME zapnout"
+    //% group="BME"
+    export function bmePowerOn() {
+        BME280.PowerOn();
+    }
+
 }
