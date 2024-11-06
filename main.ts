@@ -221,7 +221,7 @@ namespace zacatecnik {
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
-    //% group="Senzor barvy"
+    //% group="Optický a UV senzor"
     export function opticalSensorRead(port: Ports): boolean {
         return pins.digitalReadPin(digitalPins[port - 1]) == 0 ? true : false;
     }
