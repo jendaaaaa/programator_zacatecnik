@@ -45,10 +45,10 @@ namespace zacatecnik {
 
     //////////////////////////////////////////////////////////////////// BUTTON
     /**
-     * 
+     * Zjištění logické hodnoty tlačítka na daném portu.
+     * @param číslo portu
      */
-    //% block="$port logic value of a button"
-    //% block.loc.cz="$port logická hodnota tlačítka"
+    //% block="$port logická hodnota tlačítka"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
