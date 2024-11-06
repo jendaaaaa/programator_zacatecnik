@@ -5,7 +5,7 @@ load dependency
 */
 
 
-//% color="#31C7D5" weight=10 icon="\uf06e"
+//% weight=100 color=#70c0f0 icon="\uf06e"
 namespace apds9960 {
     const ADDR = 0x39
     const APDS9960_RAM = 0x00
