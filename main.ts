@@ -89,6 +89,7 @@ namespace zacatecnik {
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
+    //% weight=100
     //% group="LED"
     export function ledPlot(port: Ports) {
         pins.digitalWritePin(digitalPins[port - 1], 1);
@@ -103,6 +104,7 @@ namespace zacatecnik {
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
+    //% weight=90
     //% group="LED"
     export function ledUnplot(port: Ports) {
         pins.digitalWritePin(digitalPins[port - 1], 0);
@@ -119,7 +121,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="LED"
-    //% weight=1
+    //% weight=10
     //% advanced=true
     export function ledWriteBool(port: Ports, state: boolean) {
         if (state == true) {
