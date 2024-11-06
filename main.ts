@@ -14,7 +14,6 @@ enum Ports {
     Port4 = 4
 }
 
-
 enum ModuleType {
     //% block="Tlačítko"
     Button,
@@ -34,14 +33,22 @@ const digitalPins = [DigitalPin.P14, DigitalPin.P13, DigitalPin.P8, DigitalPin.P
 const pseudoanalogPins = [AnalogPin.P14, AnalogPin.P13, AnalogPin.P8, AnalogPin.P15];
 const analogPins = [AnalogPin.P2, AnalogPin.P1, AnalogPin.P0, AnalogPin.P3];
 
+/**
+ * Provides easier use of basic hardware modules available at omgrobotics.com.
+ */
 //% color=#f5a017 icon="\uf135" block="Začátečník"
 //% groups="['Inicializace','Tlačítko', 'LED', 'Potenciometr', 'Motor', 'Optický a UV senzor', 'BME', 'Senzor barvy', 'OLED', 'Neopixel']"
 namespace zacatecnik {
 
+    // leds array for toggleLED function
     let leds = [false, false, false, false];
 
-    //////////////////////////////////////////////////////////////////// TLACITKO
-    //% block="$port stav tlačítka"
+    //////////////////////////////////////////////////////////////////// BUTTON
+    /**
+     * 
+     */
+    //% block="$port logic value of a button"
+    //% block.loc.cz="$port logická hodnota tlačítka"
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
