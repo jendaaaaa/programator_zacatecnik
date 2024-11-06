@@ -391,7 +391,61 @@ namespace zacatecnik {
         })
         return Math.floor(apds9960.ReadColor()*1000)/1000;
     }
-
-
+    
+    /**
+     * Získání úrovně osvícení okolí. Výstupem je hodnota v rozmezí 0-255.
+     */
+    //% block="COLOR získat úroveň osvícení"
+    //% group="Senzor barvy"
+    export function apdsGetAmbient(): number {
+        control.inBackground(function () {
+            while (!apds9960.Data_Ready()) {
+                //
+            }
+        })
+        return Math.floor(apds9960.Read_Ambient()*1000)/1000;
+    }
+    
+    /**
+     * Získání hodnoty červeného světla v okolí. Výstupem je hodnota v rozmezí 0-255.
+     */
+    //% block="COLOR získat hodnotu červeného světla"
+    //% group="Senzor barvy"
+    export function apdsGetRed(): number {
+        control.inBackground(function () {
+            while (!apds9960.Data_Ready()) {
+                //
+            }
+        })
+        return Math.floor(apds9960.Read_Red()*1000)/1000;
+    }
+    
+    /**
+     * Získání hodnoty modrého světla v okolí. Výstupem je hodnota v rozmezí 0-255.
+     */
+    //% block="COLOR získat hodnotu modrého světla"
+    //% group="Senzor barvy"
+    export function apdsGetBlue(): number {
+        control.inBackground(function () {
+            while (!apds9960.Data_Ready()) {
+                //
+            }
+        })
+        return Math.floor(apds9960.Read_Blue()*1000)/1000;
+    }
+    
+    /**
+     * Získání hodnoty zeleného světla v okolí. Výstupem je hodnota v rozmezí 0-255.
+     */
+    //% block="COLOR získat hodnotu zeleného světla"
+    //% group="Senzor barvy"
+    export function apdsGetGreen(): number {
+        control.inBackground(function () {
+            while (!apds9960.Data_Ready()) {
+                //
+            }
+        })
+        return Math.floor(apds9960.Read_Green()*1000)/1000;
+    }
 
 }
