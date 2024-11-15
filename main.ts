@@ -43,20 +43,18 @@ namespace zacatecnik {
         _length: number;
 
         /**
-         * Send all the changes to the strip.
+         * Zobrazit změny na Neopixel bločku.
          */
         //% block="%neo|zobrazit"
         //% neo.defl=neo
         //% group="Neopixel"
         show() {
-            // only supported in beta
-            // ws2812b.setBufferMode(this.pin, this._mode);
             ws2812b.sendBuffer(this.buf, this.pin);
         }
 
         /**
-         * Turn off all LEDs.
-         * You need to call ``show`` to make the changes visible.
+         * Vypnout neopixel.
+         * Je třeba použít bloček ``zobrazit``,  aby se změny projevily.
          */
         //% block="%neo|vypnout"
         //% neo.defl=neo
@@ -66,8 +64,8 @@ namespace zacatecnik {
         }
 
         /**
-         * Shows all LEDs to a given color (range 0-255 for r, g, b).
-         * @param rgb RGB color of the LED
+         * Zobrazí zvolenou barvu na všech LED.
+         * @param rgb barva v RGB formátu
          */
         //% block="%neo|show color %rgb=neopixel_colors"
         //% neo.defl=neo
@@ -77,7 +75,7 @@ namespace zacatecnik {
             this.setAllRGB(rgb);
             this.show();
         }
-
+        
         /**
          * Gets the number of pixels declared on the strip
          */
