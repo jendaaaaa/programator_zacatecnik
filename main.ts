@@ -3,6 +3,23 @@
 * Read more at https://makecode.microbit.org/blocks/custom
 */
 
+enum NeoColors {
+    //% block="červená"
+    Red = 0xFF0000,
+    //% block="oranžová"
+    Orange = 0xFFA500,
+    //% block="žlutá"
+    Yellow = 0xFFFF00,
+    //% block="zelená"
+    Green = 0x00FF00,
+    //% block="modrá"
+    Blue = 0x0000FF,
+    //% block="bílá"
+    White = 0xFFFFFF,
+    //% block="černá"
+    Black = 0x000000
+}
+
 enum Ports {
     //% block="1"
     Port1 = 1,
@@ -178,12 +195,11 @@ namespace zacatecnik {
     }
 
     /**
-     * Gets the RGB value of a known color
+     * Vrátí RGB formát zvolené barvy
     */
-    //% block="%color"
+    //% blockId="neopixel_colors" block="%barva"
     //% advanced=true
-    //% group="Neopixel"
-    export function colors(color: NeoPixelColors): number {
+    export function colors(color: NeoColors): number {
         return color;
     }
 
