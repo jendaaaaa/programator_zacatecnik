@@ -278,20 +278,6 @@ namespace zacatecnik {
         }
 
         /**
-         * Zobrazí zvolenou barvu na všech LED.
-         * @param rgb barva v RGB formátu
-         */
-        //% blockId="neo_show_color" block="%neo|zobrazit barvu %rgb=neo_colors"
-        //% blockGap=14
-        //% neo.defl=neo
-        //% group="Neopixel"
-        showColor(rgb: number) {
-            rgb = rgb >> 0;
-            this.setAllRGB(rgb);
-            this.show();
-        }
-
-        /**
          * Displays a vertical bar graph based on the `value` and `high` value.
          * If `high` is 0, the chart gets adjusted automatically.
          * @param value hodnota k zobrazení
@@ -384,6 +370,20 @@ namespace zacatecnik {
                 }
                 this.setPixelColor(steps - 1, hsl(endHue, saturation, luminance));
             }
+            this.show();
+        }
+
+        /**
+         * Zobrazí zvolenou barvu na všech LED.
+         * @param rgb barva v RGB formátu
+         */
+        //% blockId="neo_show_color" block="%neo|zobrazit barvu %rgb=neo_colors"
+        //% blockGap=14
+        //% neo.defl=neo
+        //% group="Neopixel"
+        showColor(rgb: number) {
+            rgb = rgb >> 0;
+            this.setAllRGB(rgb);
             this.show();
         }
 
