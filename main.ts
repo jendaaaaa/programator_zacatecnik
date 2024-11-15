@@ -35,6 +35,202 @@ const analogPins = [AnalogPin.P2, AnalogPin.P1, AnalogPin.P0, AnalogPin.P3];
 //% groups="['Tlačítko', 'LED', 'Potenciometr', 'Motor', 'Optický a UV senzor', 'BME', 'Senzor barvy', 'OLED', 'Neopixel']"
 namespace zacatecnik {
 
+    export class Neo {
+        buf: Buffer;
+        pin: DigitalPin;
+        brightness: number;
+        start: number;
+        _length: number;
+
+        /**
+         * Send all the changes to the strip.
+         */
+        //% blockId="neopixel_show" block="%neo|zobrazit" blockGap=8
+        //% neo.defl=neo
+        show() {
+            // only supported in beta
+            // ws2812b.setBufferMode(this.pin, this._mode);
+            ws2812b.sendBuffer(this.buf, this.pin);
+        }
+
+        /**
+         * Turn off all LEDs.
+         * You need to call ``show`` to make the changes visible.
+         */
+        //% blockId="neo_clear" block="%neo|vypnout"
+        //% neo.defl=neo
+        clear(): void {
+            this.buf.fill(0, this.start * 3, this._length * 3);
+        }
+
+        /**
+         * Shows all LEDs to a given color (range 0-255 for r, g, b).
+         * @param rgb RGB color of the LED
+         */
+        //% block="%neo|show color %rgb=neopixel_colors"
+        //% neo.defl=neo
+        //% parts="neopixel"
+        showColor(rgb: number) {
+            rgb = rgb >> 0;
+            this.setAllRGB(rgb);
+            this.show();
+        }
+
+        /**
+         * Gets the number of pixels declared on the strip
+         */
+        //% blockId="neopixel_length" block="%strip|délka" blockGap=8
+        //% strip.defl=neo
+        //% weight=60 advanced=true
+        length() {
+            return this._length;
+        }
+
+        /**
+         * Set the brightness of the strip. This flag only applies to future operation.
+         * @param brightness a measure of LED brightness in 0-255. eg: 255
+         */
+        //% blockId="neopixel_set_brightness" block="%strip|set brightness %brightness" blockGap=8
+        //% strip.defl=neo
+        //% weight=59
+        //% parts="neopixel" advanced=true
+        setBrightness(brightness: number): void {
+            this.brightness = brightness & 0xff;
+        }
+        
+        /**
+         * Shift LEDs forward and clear with zeros.
+         * You need to call ``show`` to make the changes visible.
+         * @param offset number of pixels to shift forward, eg: 1
+         */
+        //% blockId="neopixel_shift" block="%strip|shift pixels by %offset" blockGap=8
+        //% strip.defl=neo
+        shift(offset: number = 1): void {
+            offset = offset >> 0;
+            this.buf.shift(-offset * 3, this.start * 3, this._length * 3);
+        }
+
+        /**
+         * Rotate LEDs forward.
+         * You need to call ``show`` to make the changes visible.
+         * @param offset number of pixels to rotate forward, eg: 1
+         */
+        //% blockId="neopixel_rotate" block="%strip|rotate pixels by %offset" blockGap=8
+        //% strip.defl=neo
+        rotate(offset: number = 1): void {
+            offset = offset >> 0;
+            this.buf.rotate(-offset * 3, this.start * 3, this._length * 3)
+        }
+
+        /**
+         * Set the pin where the neopixel is connected, defaults to P0.
+         */
+        //% parts="neopixel" advanced=true
+        setPin(port: Ports): void {
+            this.pin = digitalPins[port-1];
+            pins.digitalWritePin(this.pin, 0);
+        }
+
+        private setAllRGB(rgb: number) {
+            let red = unpackR(rgb);
+            let green = unpackG(rgb);
+            let blue = unpackB(rgb);
+
+            const br = this.brightness;
+            if (br < 255) {
+                red = (red * br) >> 8;
+                green = (green * br) >> 8;
+                blue = (blue * br) >> 8;
+            }
+            const end = this.start + this._length;
+            const stride = 3;
+            for (let i = this.start; i < end; ++i) {
+                this.setBufferRGB(i * stride, red, green, blue)
+            }
+        }
+
+        private setBufferRGB(offset: number, red: number, green: number, blue: number): void {
+            // if (this._mode === NeoPixelMode.RGB_RGB) {
+            //     this.buf[offset + 0] = red;
+            //     this.buf[offset + 1] = green;
+            // } else {
+            //     this.buf[offset + 0] = green;
+            //     this.buf[offset + 1] = red;
+            // }
+            this.buf[offset + 0] = green;
+            this.buf[offset + 1] = red;
+            this.buf[offset + 2] = blue;
+        }
+
+    }
+
+    //////////////////////////////////////////////////////////////////// NEOPIXEL
+    /**
+     * Vytvoření objektu strip pro Neopixel.
+     * @param port číslo portu
+     */
+    //% block="NEOPIXEL $port"
+    //% port.fieldEditor="gridpicker"
+    //% port.fieldOptions.width=220
+    //% port.fieldOptions.columns=4
+    //% parts="neopixel"
+    //% blockSetVariable=neo
+    //% group="Neopixel"
+    export function neoCreate1(port: Ports): void {
+        //
+    }
+
+    //% blockId="neopixel_create" block="NEOPIXEL %port"
+    //% weight=90 blockGap=8
+    //% blockSetVariable=neo
+    export function neoCreate(port: Ports): Neo {
+        let neo = new Neo();
+        let stride = 3;
+        let numleds = 8;
+        neo.buf = pins.createBuffer(numleds * stride);
+        neo.start = 0;
+        neo._length = numleds;
+        neo.setBrightness(128);
+        neo.setPin(port);
+        return neo;
+    }
+
+    /**
+     * Zobrazení barvy na Neopixel.
+     * %param strip proměnná Neopixel
+     * %param color barva k zobrazení
+     */
+    //% block="$neo ukaž barvu $color"
+    //% group="Neopixel"
+    export function neoShowColor(neo: Neo, color: NeoPixelColors) {
+        neo.showColor(color);
+    }
+
+    /**
+     * Gets the RGB value of a known color
+    */
+    //% blockId="neopixel_colors" block="%color"
+    //% advanced=true
+    export function colors(color: NeoPixelColors): number {
+        return color;
+    }
+
+    function packRGB(a: number, b: number, c: number): number {
+        return ((a & 0xFF) << 16) | ((b & 0xFF) << 8) | (c & 0xFF);
+    }
+    function unpackR(rgb: number): number {
+        let r = (rgb >> 16) & 0xFF;
+        return r;
+    }
+    function unpackG(rgb: number): number {
+        let g = (rgb >> 8) & 0xFF;
+        return g;
+    }
+    function unpackB(rgb: number): number {
+        let b = (rgb) & 0xFF;
+        return b;
+    }
+
     // leds array for toggleLED function
     let leds = [false, false, false, false];
 
@@ -454,34 +650,6 @@ namespace zacatecnik {
     //% advanced=true
     export function apdsLedPowerOff(port: Ports) {
         pins.digitalWritePin(digitalPins[port-1], 0);
-    }
-
-    //////////////////////////////////////////////////////////////////// NEOPIXEL
-    /**
-     * Vytvoření objektu strip pro Neopixel.
-     * @param port číslo portu
-     */
-    //% block="NEOPIXEL $port"
-    //% port.fieldEditor="gridpicker"
-    //% port.fieldOptions.width=220
-    //% port.fieldOptions.columns=4
-    //% parts="neopixel"
-    //% blockSetVariable=neo
-    //% group="Neopixel"
-    export function neoCreate(port: Ports): neopixel.Strip {
-        defaultStrip = neopixel.create(digitalPins[port - 1], 8, NeoPixelMode.RGB);
-        return defaultStrip;
-    }
-    
-    /**
-     * Zobrazení barvy na Neopixel.
-     * %param strip proměnná Neopixel
-     * %param color barva k zobrazení
-     */
-    //% block="$strip ukaž barvu $color"
-    //% group="Neopixel"
-    export function neoShowColor(strip: neopixel.Strip, color: NeoPixelColors) {
-        strip.showColor(color);
     }
 
 }
