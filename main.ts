@@ -67,7 +67,7 @@ namespace zacatecnik {
          * Zobrazí zvolenou barvu na všech LED.
          * @param rgb barva v RGB formátu
          */
-        //% block="%neo|show color %rgb=neopixel_colors"
+        //% block="%neo|zobrazit barvu %rgb=neopixel_colors"
         //% neo.defl=neo
         //% group="Neopixel"
         showColor(rgb: number) {
