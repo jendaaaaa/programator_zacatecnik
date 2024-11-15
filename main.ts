@@ -149,7 +149,7 @@ namespace zacatecnik {
         }
 
         /**
-         * Nastaví jas Neopixel bločku.
+         * Nastaví jas Neopixel bločku. Projeví se až po jiné akci, např. při zobrazení jiné barvy.
          * @param brightness jas LED v rozmezí 0-255. např.: 255
          */
         //% blockId="neo_brightness" block="%strip|nastavit jas %brightness"
