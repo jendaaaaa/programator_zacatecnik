@@ -92,7 +92,7 @@ namespace zacatecnik {
          * @param rgb barva v RGB formátu
          */
         //% blockId="neo_show_color" block="%neo|zobrazit barvu %rgb=neo_colors"
-        //% blockGap=12
+        //% blockGap=14
         //% neo.defl=neo
         //% group="Neopixel"
         showColor(rgb: number) {
@@ -110,7 +110,7 @@ namespace zacatecnik {
         //% blockId=neo_show_bar_graph block="%neo|zobraz sloupcový graf o hodnotě %value|až po %high"
         //% neo.defl=neo
         //% high.defl=255
-        //% blockGap=10
+        //% blockGap=8
         //% icon="\uf080"
         //% group="Neopixel"
         showBarGraph(value: number, high: number): void {
@@ -352,6 +352,8 @@ namespace zacatecnik {
      * @param l jas (luminosity) od 0 do 99
      */
     //% blockId=neo_hsl block="odstín H %h|sytost S %s|jas L %l"
+    //% group="Neopixel"
+    //% advanced=true
     export function hsl(h: number, s: number, l: number): number {
         h = Math.round(h);
         s = Math.round(s);
