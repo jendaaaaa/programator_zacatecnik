@@ -35,7 +35,6 @@ const analogPins = [AnalogPin.P2, AnalogPin.P1, AnalogPin.P0, AnalogPin.P3];
 //% groups="['Tlačítko', 'LED', 'Potenciometr', 'Motor', 'Optický a UV senzor', 'BME', 'Senzor barvy', 'OLED', 'Neopixel']"
 namespace zacatecnik {
 
-    //% group="Neopixel"
     export class Neo {
         buf: Buffer;
         pin: DigitalPin;
@@ -48,6 +47,7 @@ namespace zacatecnik {
          */
         //% block="%neo|zobrazit"
         //% neo.defl=neo
+        //% group="Neopixel"
         show() {
             // only supported in beta
             // ws2812b.setBufferMode(this.pin, this._mode);
@@ -60,6 +60,7 @@ namespace zacatecnik {
          */
         //% block="%neo|vypnout"
         //% neo.defl=neo
+        //% group="Neopixel"
         clear(): void {
             this.buf.fill(0, this.start * 3, this._length * 3);
         }
@@ -70,6 +71,7 @@ namespace zacatecnik {
          */
         //% block="%neo|show color %rgb=neopixel_colors"
         //% neo.defl=neo
+        //% group="Neopixel"
         showColor(rgb: number) {
             rgb = rgb >> 0;
             this.setAllRGB(rgb);
@@ -81,6 +83,7 @@ namespace zacatecnik {
          */
         //% blockId="neopixel_length" block="%strip|délka"
         //% strip.defl=neo
+        //% group="Neopixel"
         //% advanced=true
         length() {
             return this._length;
@@ -92,6 +95,7 @@ namespace zacatecnik {
          */
         //% block="%strip|set brightness %brightness"
         //% strip.defl=neo
+        //% group="Neopixel"
         //% advanced=true
         setBrightness(brightness: number): void {
             this.brightness = brightness & 0xff;
@@ -104,6 +108,7 @@ namespace zacatecnik {
          */
         //% block="%strip|shift pixels by %offset"
         //% strip.defl=neo
+        //% group="Neopixel"
         shift(offset: number = 1): void {
             offset = offset >> 0;
             this.buf.shift(-offset * 3, this.start * 3, this._length * 3);
@@ -116,6 +121,7 @@ namespace zacatecnik {
          */
         //% block="%strip|rotate pixels by %offset"
         //% strip.defl=neo
+        //% group="Neopixel"
         rotate(offset: number = 1): void {
             offset = offset >> 0;
             this.buf.rotate(-offset * 3, this.start * 3, this._length * 3)
@@ -124,6 +130,7 @@ namespace zacatecnik {
         /**
          * Set the pin where the neopixel is connected, defaults to P0.
          */
+        //% group="Neopixel"
         //% advanced=true
         setPin(port: Ports): void {
             this.pin = digitalPins[port-1];
