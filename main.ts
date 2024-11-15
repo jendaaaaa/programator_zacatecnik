@@ -92,6 +92,7 @@ namespace zacatecnik {
          * @param rgb barva v RGB formátu
          */
         //% blockId="neo_show_color" block="%neo|zobrazit barvu %rgb=neo_colors"
+        //% blockGap=8
         //% neo.defl=neo
         //% group="Neopixel"
         showColor(rgb: number) {
@@ -109,6 +110,7 @@ namespace zacatecnik {
         //% blockId=neo_show_bar_graph block="%neo|zobraz sloupcový graf o hodnotě %value|až po %high"
         //% neo.defl=neo
         //% high.defl=255
+        //% blockGap=8
         //% icon="\uf080"
         //% group="Neopixel"
         showBarGraph(value: number, high: number): void {
@@ -144,6 +146,7 @@ namespace zacatecnik {
          * @param endHue konečná hodnota odstínu duhy, např.: 360
          */
         //% blockId="neo_set_strip_rainbow" block="%neo|zobrazit duhu s odstínem od %startHue|do %endHue"
+        //% blockGap=8
         //% neo.defl=neo
         //% startHue.min=1 startHue.max=360 startHue.defl=1
         //% endHue.min=1 endHue.max=360 endHue.defl=360
