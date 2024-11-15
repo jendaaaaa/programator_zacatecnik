@@ -48,10 +48,10 @@ namespace zacatecnik {
          * Shows all LEDs to a given color (range 0-255 for r, g, b).
          * @param rgb RGB color of the LED
          */
-        //% blockId="neopixel_set_strip_color" block="%strip|show color %rgb=neopixel_colors"
-        //% strip.defl=strip
-        //% weight=85 blockGap=8
-        //% parts="neopixel"
+        // block="%strip|show color %rgb=neopixel_colors"
+        // strip.defl=strip
+        // weight=85 blockGap=8
+        // parts="neopixel"
         showColor(rgb: number) {
             rgb = rgb >> 0;
             this.setAllRGB(rgb);
@@ -63,10 +63,10 @@ namespace zacatecnik {
          * @param startHue the start hue value for the rainbow, eg: 1
          * @param endHue the end hue value for the rainbow, eg: 360
          */
-        //% blockId="neopixel_set_strip_rainbow" block="%strip|show rainbow from %startHue|to %endHue"
-        //% strip.defl=strip
-        //% weight=85 blockGap=8
-        //% parts="neopixel"
+        // block="%strip|show rainbow from %startHue|to %endHue"
+        // strip.defl=strip
+        // weight=85 blockGap=8
+        // parts="neopixel"
         showRainbow(startHue: number = 1, endHue: number = 360) {
             if (this._length <= 0) return;
 
@@ -349,10 +349,9 @@ namespace zacatecnik {
          * You need to call ``show`` to make the changes visible.
          * @param offset number of pixels to rotate forward, eg: 1
          */
-        //% blockId="neopixel_rotate" block="%strip|rotate pixels by %offset" blockGap=8
-        //% strip.defl=strip
-        //% weight=39
-        //% parts="neopixel"
+        // block="%strip|rotate pixels by %offset" blockGap=8
+        // strip.defl=strip
+        // parts="neopixel"
         rotate(offset: number = 1): void {
             offset = offset >> 0;
             const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
@@ -362,32 +361,12 @@ namespace zacatecnik {
         /**
          * Set the pin where the neopixel is connected, defaults to P0.
          */
-        //% weight=10
-        //% parts="neopixel" advanced=true
+        // weight=10
+        // parts="neopixel" advanced=true
         setPin(pin: DigitalPin): void {
             this.pin = pin;
             pins.digitalWritePin(this.pin, 0);
             // don't yield to avoid races on initialization
-        }
-
-        /**
-         * Estimates the electrical current (mA) consumed by the current light configuration.
-         */
-        //% weight=9 blockId=neopixel_power block="%strip|power (mA)"
-        //% strip.defl=strip
-        //% advanced=true
-        power(): number {
-            const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
-            const end = this.start + this._length;
-            let p = 0;
-            for (let i = this.start; i < end; ++i) {
-                const ledoffset = i * stride;
-                for (let j = 0; j < stride; ++j) {
-                    p += this.buf[i + j];
-                }
-            }
-            return Math.idiv(this.length() * 7, 10) /* 0.7mA per neopixel */
-                + Math.idiv(p * 480, 10000); /* rought approximation */
         }
 
         private setBufferRGB(offset: number, red: number, green: number, blue: number): void {
@@ -955,8 +934,8 @@ namespace zacatecnik {
      * @param s saturation from 0 to 99
      * @param l luminosity from 0 to 99
      */
-    //% blockId=neopixelHSL block="hue %h|saturation %s|luminosity %l"
-    export function hsl(h: number, s: number, l: number): number {
+    // block="hue %h|saturation %s|luminosity %l"
+    function hsl(h: number, s: number, l: number): number {
         h = Math.round(h);
         s = Math.round(s);
         l = Math.round(l);
