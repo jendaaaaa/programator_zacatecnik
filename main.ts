@@ -67,7 +67,7 @@ namespace zacatecnik {
         /**
          * Zobrazit změny na Neopixel bločku.
          */
-        //% block="%neo|zobrazit"
+        //% blockId="neo_show" block="%neo|zobrazit"
         //% neo.defl=neo
         //% group="Neopixel"
         show() {
@@ -78,7 +78,7 @@ namespace zacatecnik {
          * Vypnout neopixel.
          * Je třeba použít bloček ``zobrazit``,  aby se změny projevily.
          */
-        //% block="%neo|vypnout"
+        //% blockId="neo_clear" block="%neo|vypnout"
         //% neo.defl=neo
         //% group="Neopixel"
         clear(): void {
@@ -89,7 +89,7 @@ namespace zacatecnik {
          * Zobrazí zvolenou barvu na všech LED.
          * @param rgb barva v RGB formátu
          */
-        //% block="%neo|zobrazit barvu %rgb=neo_colors"
+        //% blockId="neo_show_color" block="%neo|zobrazit barvu %rgb=neo_colors"
         //% neo.defl=neo
         //% group="Neopixel"
         showColor(rgb: number) {
@@ -99,9 +99,9 @@ namespace zacatecnik {
         }
         
         /**
-         * Gets the number of pixels declared on the strip
+         * Vrátí počet LED Neopixel bločku.
          */
-        //% blockId="neopixel_length" block="%strip|délka"
+        //% blockId="neo_length" block="%strip|počet LED"
         //% strip.defl=neo
         //% group="Neopixel"
         //% advanced=true
@@ -110,10 +110,10 @@ namespace zacatecnik {
         }
 
         /**
-         * Set the brightness of the strip. This flag only applies to future operation.
-         * @param brightness a measure of LED brightness in 0-255. eg: 255
+         * Nastaví jas Neopixel bločku.
+         * @param brightness jas LED v rozmezí 0-255. např.: 255
          */
-        //% block="%strip|set brightness %brightness"
+        //% blockId="neo_brightness" block="%strip|nastavit jas %brightness"
         //% strip.defl=neo
         //% group="Neopixel"
         //% advanced=true
@@ -122,29 +122,31 @@ namespace zacatecnik {
         }
         
         /**
-         * Shift LEDs forward and clear with zeros.
+         * Posune rozsvícené LED dál o$offset.
          * You need to call ``show`` to make the changes visible.
          * @param offset number of pixels to shift forward, eg: 1
          */
-        //% block="%strip|shift pixels by %offset"
+        //% blockId="neo_shift" block="%strip|shift pixels by %offset"
         //% strip.defl=neo
         //% group="Neopixel"
         shift(offset: number = 1): void {
             offset = offset >> 0;
             this.buf.shift(-offset * 3, this.start * 3, this._length * 3);
+            this.show();
         }
 
         /**
-         * Rotate LEDs forward.
+         * Rotuje LED.
          * You need to call ``show`` to make the changes visible.
          * @param offset number of pixels to rotate forward, eg: 1
          */
-        //% block="%strip|rotate pixels by %offset"
+        //% blockId="neo_rotate" block="%strip|rotate pixels by %offset"
         //% strip.defl=neo
         //% group="Neopixel"
         rotate(offset: number = 1): void {
             offset = offset >> 0;
-            this.buf.rotate(-offset * 3, this.start * 3, this._length * 3)
+            this.buf.rotate(-offset * 3, this.start * 3, this._length * 3);
+            this.show();
         }
 
         /**
@@ -184,7 +186,11 @@ namespace zacatecnik {
 
     //////////////////////////////////////////////////////////////////// NEOPIXEL
 
-    //% block="NEOPIXEL %port"
+    /**
+     * Vytvoří objekt Neopixel a uloží jej do proměnné spolu s informací o použitém portu.
+     * @param port číslo portu
+     */
+    //% blockId="neo_create" block="NEOPIXEL %port"
     //% blockSetVariable=neo
     //% group="Neopixel"
     export function neoCreate(port: Ports): Neo {
@@ -200,7 +206,7 @@ namespace zacatecnik {
     }
 
     /**
-     * Vrátí zakódovanou hodnotu RGB ze tří složek R, G a B
+     * Vrátí zakódovanou hodnotu RGB ze tří složek R, G a B.
      * @param red hodnota červené od 0 do 255. např.: 255
      * @param green hodnota zelené od 0 do 255. např.: 255
      * @param blue hodnota modré od 0 do 255. např.: 255
@@ -213,7 +219,7 @@ namespace zacatecnik {
     }
 
     /**
-     * Vrátí RGB formát zvolené barvy
+     * Vrátí RGB formát zvolené barvy.
     */
     //% blockId="neo_colors" block="%barva"
     //% group="Neopixel"
