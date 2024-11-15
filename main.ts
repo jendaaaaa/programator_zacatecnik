@@ -473,9 +473,10 @@ namespace zacatecnik {
     
     /**
      * Zobrazení barvy na Neopixel.
+     * %param strip proměnná Neopixel
+     * %param color barva k zobrazení
      */
     //% block="$strip ukaž barvu $color"
-    //% strip.defl="strip"
     //% group="Neopixel"
     export function neoShowColor(strip: neopixel.Strip, color: NeoPixelColors) {
         strip.showColor(color);
