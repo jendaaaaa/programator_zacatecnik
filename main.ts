@@ -117,16 +117,12 @@ namespace zacatecnik {
                 this.show();
                 return;
             }
-            if (value == 0){
-                this.clear();
-                return;
-            }
             value = Math.abs(value);
             const n = this._length;
             const n1 = n - 1;
             let v = Math.idiv((value * n), high);
             if (v == 0) {
-                this.setPixelColor(0, 0x000066);
+                this.setPixelColor(0, 0x666600);
                 for (let i = 1; i < n; ++i)
                     this.setPixelColor(i, 0);
             } else {
