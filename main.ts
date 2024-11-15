@@ -76,8 +76,7 @@ namespace zacatecnik {
         }
 
         /**
-         * Vypnout neopixel.
-         * Je třeba použít bloček ``zobrazit``,  aby se změny projevily.
+         * Zhasnout všechny pixely.
          */
         //% blockId="neo_clear" block="%neo|vypnout"
         //% neo.defl=neo
@@ -85,6 +84,7 @@ namespace zacatecnik {
         //% advanced=true
         clear(): void {
             this.buf.fill(0, this.start * 3, this._length * 3);
+            this.show();
         }
 
         /**
@@ -117,7 +117,10 @@ namespace zacatecnik {
                 this.show();
                 return;
             }
-
+            if (value == 0){
+                this.clear();
+                return;
+            }
             value = Math.abs(value);
             const n = this._length;
             const n1 = n - 1;
