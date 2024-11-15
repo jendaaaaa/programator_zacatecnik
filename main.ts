@@ -92,7 +92,7 @@ namespace zacatecnik {
          * @param rgb barva v RGB formátu
          */
         //% blockId="neo_show_color" block="%neo|zobrazit barvu %rgb=neo_colors"
-        //% blockGap=8
+        //% blockGap=12
         //% neo.defl=neo
         //% group="Neopixel"
         showColor(rgb: number) {
@@ -110,7 +110,7 @@ namespace zacatecnik {
         //% blockId=neo_show_bar_graph block="%neo|zobraz sloupcový graf o hodnotě %value|až po %high"
         //% neo.defl=neo
         //% high.defl=255
-        //% blockGap=8
+        //% blockGap=10
         //% icon="\uf080"
         //% group="Neopixel"
         showBarGraph(value: number, high: number): void {
@@ -318,6 +318,7 @@ namespace zacatecnik {
      */
     //% blockId="neo_create" block="NEOPIXEL %port"
     //% blockSetVariable=neo
+    //% blockGap=14
     //% group="Neopixel"
     export function neoCreate(port: Ports): Neo {
         let neo = new Neo();
