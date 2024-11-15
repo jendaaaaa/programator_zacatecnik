@@ -138,14 +138,13 @@ namespace zacatecnik {
         }
 
         /**
-         * Shows a rainbow pattern on all LEDs.
-         * @param startHue the start hue value for the rainbow, eg: 1
-         * @param endHue the end hue value for the rainbow, eg: 360
+         * Zobrazí duhu na Neopixel bločku.
+         * @param startHue počáteční hodnota odstínu duhy, např.: 1
+         * @param endHue konečná hodnota odstínu duhy, např.: 360
          */
-        //% blockId="neopixel_set_strip_rainbow" block="%strip|show rainbow from %startHue|to %endHue"
-        //% strip.defl=strip
-        //% weight=85 blockGap=8
-        //% parts="neopixel"
+        //% blockId="neo_set_strip_rainbow" block="%neo|show rainbow from %startHue|to %endHue"
+        //% neo.defl=neo
+        //% group="Neopixel"
         showRainbow(startHue: number = 1, endHue: number = 360) {
             if (this._length <= 0) return;
 
