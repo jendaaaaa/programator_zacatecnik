@@ -17,9 +17,9 @@ enum NeoColors {
     //% block="modrá"
     Blue = 0x0064FF,
     //% block="fialová"
-    Violet = 0x0064FF,
+    Violet = 0xB000FF,
     //% block="růžová"
-    Pink = 0x0064FF,
+    Pink = 0xFF0060,
     //% block="bílá"
     White = 0xFFFFFF,
     //% block="černá"
