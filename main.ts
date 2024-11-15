@@ -108,6 +108,7 @@ namespace zacatecnik {
          */
         //% blockId=neo_show_bar_graph block="%neo|zobraz sloupcový graf o hodnotě %value|až po %high"
         //% neo.defl=neo
+        //% high.defl=255
         //% icon="\uf080"
         //% group="Neopixel"
         showBarGraph(value: number, high: number): void {
