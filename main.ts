@@ -35,6 +35,7 @@ const analogPins = [AnalogPin.P2, AnalogPin.P1, AnalogPin.P0, AnalogPin.P3];
 //% groups="['Tlačítko', 'LED', 'Potenciometr', 'Motor', 'Optický a UV senzor', 'BME', 'Senzor barvy', 'OLED', 'Neopixel']"
 namespace zacatecnik {
 
+    //% group="Neopixel"
     export class Neo {
         buf: Buffer;
         pin: DigitalPin;
@@ -169,6 +170,7 @@ namespace zacatecnik {
     //% blockId="neopixel_create" block="NEOPIXEL %port"
     //% weight=90 blockGap=8
     //% blockSetVariable=neo
+    //% group="Neopixel"
     export function neoCreate(port: Ports): Neo {
         let neo = new Neo();
         let stride = 3;
@@ -186,6 +188,7 @@ namespace zacatecnik {
     */
     //% blockId="neopixel_colors" block="%color"
     //% advanced=true
+    //% group="Neopixel"
     export function colors(color: NeoPixelColors): number {
         return color;
     }
