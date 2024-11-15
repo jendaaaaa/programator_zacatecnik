@@ -70,6 +70,7 @@ namespace zacatecnik {
         //% blockId="neo_show" block="%neo|zobrazit"
         //% neo.defl=neo
         //% group="Neopixel"
+        //% advanced=true
         show() {
             ws2812b.sendBuffer(this.buf, this.pin);
         }
@@ -81,6 +82,7 @@ namespace zacatecnik {
         //% blockId="neo_clear" block="%neo|vypnout"
         //% neo.defl=neo
         //% group="Neopixel"
+        //% advanced=true
         clear(): void {
             this.buf.fill(0, this.start * 3, this._length * 3);
         }
@@ -98,6 +100,44 @@ namespace zacatecnik {
             this.show();
         }
         
+        /**
+         * Displays a vertical bar graph based on the `value` and `high` value.
+         * If `high` is 0, the chart gets adjusted automatically.
+         * @param value hodnota k zobrazení
+         * @param high maximální hodnota, např.: 255
+         */
+        //% blockId=neo_show_bar_graph block="%neo|zobraz sloupcový graf o hodnotě %value|až po %high"
+        //% neo.defl=neo
+        //% icon="\uf080"
+        //% group="Neopixel"
+        showBarGraph(value: number, high: number): void {
+            if (high <= 0) {
+                this.clear();
+                this.setPixelColor(0, NeoPixelColors.Yellow);
+                this.show();
+                return;
+            }
+
+            value = Math.abs(value);
+            const n = this._length;
+            const n1 = n - 1;
+            let v = Math.idiv((value * n), high);
+            if (v == 0) {
+                this.setPixelColor(0, 0x666600);
+                for (let i = 1; i < n; ++i)
+                    this.setPixelColor(i, 0);
+            } else {
+                for (let i = 0; i < n; ++i) {
+                    if (i <= v) {
+                        const b = Math.idiv(i * 255, n1);
+                        this.setPixelColor(i, neopixel.rgb(b, 0, 255 - b));
+                    }
+                    else this.setPixelColor(i, 0);
+                }
+            }
+            this.show();
+        }
+
         /**
          * Vrátí počet LED Neopixel bločku.
          */
@@ -159,6 +199,31 @@ namespace zacatecnik {
         setPin(port: Ports): void {
             this.pin = digitalPins[port-1];
             pins.digitalWritePin(this.pin, 0);
+        }
+
+        private setPixelColor(pixeloffset: number, rgb: number): void {
+            this.setPixelRGB(pixeloffset >> 0, rgb >> 0);
+        }
+
+        private setPixelRGB(pixeloffset: number, rgb: number): void {
+            if (pixeloffset < 0
+                || pixeloffset >= this._length)
+                return;
+
+            let stride = 3;
+            pixeloffset = (pixeloffset + this.start) * stride;
+
+            let red = unpackR(rgb);
+            let green = unpackG(rgb);
+            let blue = unpackB(rgb);
+
+            let br = this.brightness;
+            if (br < 255) {
+                red = (red * br) >> 8;
+                green = (green * br) >> 8;
+                blue = (blue * br) >> 8;
+            }
+            this.setBufferRGB(pixeloffset, red, green, blue)
         }
 
         private setAllRGB(rgb: number) {
