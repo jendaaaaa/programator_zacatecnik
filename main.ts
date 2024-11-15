@@ -7,7 +7,7 @@ enum NeoColors {
     //% block="červená"
     Red = 0xFF0000,
     //% block="oranžová"
-    Orange = 0xFFA500,
+    Orange = 0xFF1E00,
     //% block="žlutá"
     Yellow = 0xFFFF00,
     //% block="zelená"
@@ -84,7 +84,7 @@ namespace zacatecnik {
          * Zobrazí zvolenou barvu na všech LED.
          * @param rgb barva v RGB formátu
          */
-        //% block="%neo|zobrazit barvu %rgb=neopixel_colors"
+        //% block="%neo|zobrazit barvu %rgb=neo_colors"
         //% neo.defl=neo
         //% group="Neopixel"
         showColor(rgb: number) {
@@ -195,9 +195,23 @@ namespace zacatecnik {
     }
 
     /**
+     * Vrátí zakódovanou hodnotu RGB ze tří složek R, G a B
+     * @param red hodnota červené od 0 do 255. např.: 255
+     * @param green hodnota zelené od 0 do 255. např.: 255
+     * @param blue hodnota modré od 0 do 255. např.: 255
+     */
+    //% blockId="neo_rgb" block="červená %red|zelená %green|modrá %blue"
+    //% group="Neopixel"
+    //% advanced=true
+    export function rgb(red: number, green: number, blue: number): number {
+        return packRGB(red, green, blue);
+    }
+
+    /**
      * Vrátí RGB formát zvolené barvy
     */
-    //% blockId="neopixel_colors" block="%barva"
+    //% blockId="neo_colors" block="%barva"
+    //% group="Neopixel"
     //% advanced=true
     export function colors(color: NeoColors): number {
         return color;
