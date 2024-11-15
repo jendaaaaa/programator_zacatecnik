@@ -23,6 +23,7 @@ enum ColorsRGB {
     Blue
 }
 
+let defaultStrip: neopixel.Strip = null;
 const digitalPins = [DigitalPin.P14, DigitalPin.P13, DigitalPin.P8, DigitalPin.P15];
 const pseudoanalogPins = [AnalogPin.P14, AnalogPin.P13, AnalogPin.P8, AnalogPin.P15];
 const analogPins = [AnalogPin.P2, AnalogPin.P1, AnalogPin.P0, AnalogPin.P3];
@@ -468,7 +469,8 @@ namespace zacatecnik {
     //% blockSetVariable=strip
     //% group="Neopixel"
     export function neoCreate(port: Ports): neopixel.Strip {
-        return neopixel.create(digitalPins[port-1],8,NeoPixelMode.RGB);
+        defaultStrip = neopixel.create(digitalPins[port - 1], 8, NeoPixelMode.RGB);
+        return defaultStrip;
     }
     
     /**
@@ -478,7 +480,7 @@ namespace zacatecnik {
      */
     //% block="$strip ukaž barvu $color"
     //% group="Neopixel"
-    export function neoShowColor(strip: neopixel.Strip, color: NeoPixelColors) {
+    export function neoShowColor(strip: neopixel.Strip = defaultStrip, color: NeoPixelColors) {
         strip.showColor(color);
     }
 
