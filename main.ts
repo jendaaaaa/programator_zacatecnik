@@ -126,9 +126,10 @@ namespace zacatecnik {
          * You need to call ``show`` to make the changes visible.
          * @param offset number of pixels to shift forward, eg: 1
          */
-        //% blockId="neo_shift" block="%strip|shift pixels by %offset"
+        //% blockId="neo_shift" block="%strip|posunout pixely o %offset"
         //% strip.defl=neo
         //% group="Neopixel"
+        //% advanced=true
         shift(offset: number = 1): void {
             offset = offset >> 0;
             this.buf.shift(-offset * 3, this.start * 3, this._length * 3);
@@ -140,9 +141,10 @@ namespace zacatecnik {
          * You need to call ``show`` to make the changes visible.
          * @param offset number of pixels to rotate forward, eg: 1
          */
-        //% blockId="neo_rotate" block="%strip|rotate pixels by %offset"
+        //% blockId="neo_rotate" block="%strip|otočit pixely o %offset"
         //% strip.defl=neo
         //% group="Neopixel"
+        //% advanced=true
         rotate(offset: number = 1): void {
             offset = offset >> 0;
             this.buf.rotate(-offset * 3, this.start * 3, this._length * 3);
