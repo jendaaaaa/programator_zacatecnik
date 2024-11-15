@@ -751,6 +751,18 @@ namespace zacatecnik {
     export function neoCreate(port: Ports): neopixel.Strip {
         return neopixel.create(digitalPins[port-1],8,NeoPixelMode.RGB);
     }
+    
+    /**
+     * Zobrazení barvy na Neopixel.
+     * @param neo proměnná Neopixel
+     */
+    //% block="$strip ukaž barvu $color"
+    //% parts="neopixel"
+    //% blockSetVariable=neopixel.strip
+    //% group="Neopixel"
+    export function neoShowColor(strip: neopixel.Strip, color: NeoPixelColors) {
+        strip.showColor(color);
+    }
 
     // function create(pin: DigitalPin, numleds: number, mode: NeoPixelMode): Strip {
     //     let strip = new Strip();
