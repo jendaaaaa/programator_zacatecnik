@@ -46,7 +46,7 @@ namespace zacatecnik {
         /**
          * Send all the changes to the strip.
          */
-        //% blockId="neopixel_show" block="%neo|zobrazit" blockGap=8
+        //% block="%neo|zobrazit"
         //% neo.defl=neo
         show() {
             // only supported in beta
@@ -58,7 +58,7 @@ namespace zacatecnik {
          * Turn off all LEDs.
          * You need to call ``show`` to make the changes visible.
          */
-        //% blockId="neo_clear" block="%neo|vypnout"
+        //% block="%neo|vypnout"
         //% neo.defl=neo
         clear(): void {
             this.buf.fill(0, this.start * 3, this._length * 3);
@@ -70,7 +70,6 @@ namespace zacatecnik {
          */
         //% block="%neo|show color %rgb=neopixel_colors"
         //% neo.defl=neo
-        //% parts="neopixel"
         showColor(rgb: number) {
             rgb = rgb >> 0;
             this.setAllRGB(rgb);
@@ -80,9 +79,9 @@ namespace zacatecnik {
         /**
          * Gets the number of pixels declared on the strip
          */
-        //% blockId="neopixel_length" block="%strip|délka" blockGap=8
+        //% blockId="neopixel_length" block="%strip|délka"
         //% strip.defl=neo
-        //% weight=60 advanced=true
+        //% advanced=true
         length() {
             return this._length;
         }
@@ -91,10 +90,9 @@ namespace zacatecnik {
          * Set the brightness of the strip. This flag only applies to future operation.
          * @param brightness a measure of LED brightness in 0-255. eg: 255
          */
-        //% blockId="neopixel_set_brightness" block="%strip|set brightness %brightness" blockGap=8
+        //% block="%strip|set brightness %brightness"
         //% strip.defl=neo
-        //% weight=59
-        //% parts="neopixel" advanced=true
+        //% advanced=true
         setBrightness(brightness: number): void {
             this.brightness = brightness & 0xff;
         }
@@ -104,7 +102,7 @@ namespace zacatecnik {
          * You need to call ``show`` to make the changes visible.
          * @param offset number of pixels to shift forward, eg: 1
          */
-        //% blockId="neopixel_shift" block="%strip|shift pixels by %offset" blockGap=8
+        //% block="%strip|shift pixels by %offset"
         //% strip.defl=neo
         shift(offset: number = 1): void {
             offset = offset >> 0;
@@ -116,7 +114,7 @@ namespace zacatecnik {
          * You need to call ``show`` to make the changes visible.
          * @param offset number of pixels to rotate forward, eg: 1
          */
-        //% blockId="neopixel_rotate" block="%strip|rotate pixels by %offset" blockGap=8
+        //% block="%strip|rotate pixels by %offset"
         //% strip.defl=neo
         rotate(offset: number = 1): void {
             offset = offset >> 0;
@@ -126,7 +124,7 @@ namespace zacatecnik {
         /**
          * Set the pin where the neopixel is connected, defaults to P0.
          */
-        //% parts="neopixel" advanced=true
+        //% advanced=true
         setPin(port: Ports): void {
             this.pin = digitalPins[port-1];
             pins.digitalWritePin(this.pin, 0);
@@ -151,24 +149,15 @@ namespace zacatecnik {
         }
 
         private setBufferRGB(offset: number, red: number, green: number, blue: number): void {
-            // if (this._mode === NeoPixelMode.RGB_RGB) {
-            //     this.buf[offset + 0] = red;
-            //     this.buf[offset + 1] = green;
-            // } else {
-            //     this.buf[offset + 0] = green;
-            //     this.buf[offset + 1] = red;
-            // }
             this.buf[offset + 0] = green;
             this.buf[offset + 1] = red;
             this.buf[offset + 2] = blue;
         }
-
     }
 
     //////////////////////////////////////////////////////////////////// NEOPIXEL
 
-    //% blockId="neopixel_create" block="NEOPIXEL %port"
-    //% weight=90 blockGap=8
+    //% block="NEOPIXEL %port"
     //% blockSetVariable=neo
     //% group="Neopixel"
     export function neoCreate(port: Ports): Neo {
@@ -186,7 +175,7 @@ namespace zacatecnik {
     /**
      * Gets the RGB value of a known color
     */
-    //% blockId="neopixel_colors" block="%color"
+    //% block="%color"
     //% advanced=true
     //% group="Neopixel"
     export function colors(color: NeoPixelColors): number {
