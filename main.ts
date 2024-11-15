@@ -144,6 +144,8 @@ namespace zacatecnik {
          */
         //% blockId="neo_set_strip_rainbow" block="%neo|show rainbow from %startHue|to %endHue"
         //% neo.defl=neo
+        //% startHue.min=1 startHue.max=360
+        //% endHue.min=1 endHue.max=360
         //% group="Neopixel"
         showRainbow(startHue: number = 1, endHue: number = 360) {
             if (this._length <= 0) return;
@@ -157,8 +159,8 @@ namespace zacatecnik {
             //hue
             const h1 = startHue;
             const h2 = endHue;
-            const hDistCW = ((h2 + 360) - h1) % 360;
-            const hStep = Math.idiv((hDistCW * 100), steps);
+            const hDist = ((h2 + 360) - h1) % 360;
+            const hStep = Math.idiv((hDist * 100), steps);
             const h1_100 = h1 * 100;
 
             //sat
