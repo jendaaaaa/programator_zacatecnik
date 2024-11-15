@@ -113,7 +113,7 @@ namespace zacatecnik {
         showBarGraph(value: number, high: number): void {
             if (high <= 0) {
                 this.clear();
-                this.setPixelColor(0, NeoPixelColors.Yellow);
+                this.setPixelColor(0, NeoColors.White);
                 this.show();
                 return;
             }
