@@ -123,8 +123,8 @@ namespace zacatecnik {
             const n1 = n - 1;
             let v = Math.idiv((value * n), high);
             if (v == 0) {
-                this.setPixelColor(0, 0xFFFFFF);
-                for (let i = 1; i < n; ++i)
+                // this.setPixelColor(0, 0xFFFFFF);
+                for (let i = 0; i < n; ++i)
                     this.setPixelColor(i, 0);
             } else {
                 for (let i = 0; i < n; ++i) {
