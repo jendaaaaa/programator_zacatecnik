@@ -165,20 +165,6 @@ namespace zacatecnik {
     }
 
     //////////////////////////////////////////////////////////////////// NEOPIXEL
-    /**
-     * Vytvoření objektu strip pro Neopixel.
-     * @param port číslo portu
-     */
-    //% block="NEOPIXEL $port"
-    //% port.fieldEditor="gridpicker"
-    //% port.fieldOptions.width=220
-    //% port.fieldOptions.columns=4
-    //% parts="neopixel"
-    //% blockSetVariable=neo
-    //% group="Neopixel"
-    export function neoCreate1(port: Ports): void {
-        //
-    }
 
     //% blockId="neopixel_create" block="NEOPIXEL %port"
     //% weight=90 blockGap=8
@@ -193,17 +179,6 @@ namespace zacatecnik {
         neo.setBrightness(128);
         neo.setPin(port);
         return neo;
-    }
-
-    /**
-     * Zobrazení barvy na Neopixel.
-     * %param strip proměnná Neopixel
-     * %param color barva k zobrazení
-     */
-    //% block="$neo ukaž barvu $color"
-    //% group="Neopixel"
-    export function neoShowColor(neo: Neo, color: NeoPixelColors) {
-        neo.showColor(color);
     }
 
     /**
