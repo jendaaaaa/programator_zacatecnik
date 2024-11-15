@@ -466,7 +466,7 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% parts="neopixel"
-    //% blockSetVariable=strip
+    //% blockSetVariable=neo
     //% group="Neopixel"
     export function neoCreate(port: Ports): neopixel.Strip {
         defaultStrip = neopixel.create(digitalPins[port - 1], 8, NeoPixelMode.RGB);
@@ -479,7 +479,6 @@ namespace zacatecnik {
      * %param color barva k zobrazení
      */
     //% block="$strip ukaž barvu $color"
-    //% strip.defl=defaultStrip
     //% group="Neopixel"
     export function neoShowColor(strip: neopixel.Strip, color: NeoPixelColors) {
         strip.showColor(color);
