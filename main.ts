@@ -757,8 +757,6 @@ namespace zacatecnik {
      * @param neo proměnná Neopixel
      */
     //% block="$strip ukaž barvu $color"
-    //% parts="neopixel"
-    //% blockSetVariable=neopixel.strip
     //% group="Neopixel"
     export function neoShowColor(strip: neopixel.Strip, color: NeoPixelColors) {
         strip.showColor(color);
