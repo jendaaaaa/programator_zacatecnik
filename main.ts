@@ -64,14 +64,14 @@ namespace zacatecnik {
         start: number;
         _length: number;
 
-        /**
-         * Zobrazit změny na Neopixel bločku.
-         */
-        //% blockId="neo_show" block="%neo|zobrazit"
-        //% neo.defl=neo
-        //% group="Neopixel"
-        //% advanced=true
-        show() {
+        // /**
+        //  * Zobrazit změny na Neopixel bločku.
+        //  */
+        // //% blockId="neo_show" block="%neo|zobrazit"
+        // //% neo.defl=neo
+        // //% group="Neopixel"
+        // //% advanced=true
+        private show() {
             ws2812b.sendBuffer(this.buf, this.pin);
         }
 
@@ -338,7 +338,7 @@ namespace zacatecnik {
      * @param green hodnota zelené od 0 do 255. např.: 255
      * @param blue hodnota modré od 0 do 255. např.: 255
      */
-    //% blockId="neo_rgb" block="červená %red|zelená %green|modrá %blue"
+    //% blockId="neo_rgb" block="červená R %red|zelená G %green|modrá B %blue"
     //% group="Neopixel"
     //% advanced=true
     export function rgb(red: number, green: number, blue: number): number {
