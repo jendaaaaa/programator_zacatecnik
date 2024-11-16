@@ -227,6 +227,7 @@ namespace zacatecnik {
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
+    //% level.min=0 level.max=1023
     //% group="Motor"
     export function motorSetLevel(port: Ports, level: number) {
         pins.analogWritePin(pseudoanalogPins[port - 1], level);
@@ -278,8 +279,8 @@ namespace zacatecnik {
         }
 
         /**
-         * Displays a vertical bar graph based on the `value` and `high` value.
-         * If `high` is 0, the chart gets adjusted automatically.
+         * Zobrazí sloupcový graf na základě `hodnoty` a `maxima`.
+         * Pokud `maximum` je 0, graf se upraví automaticky.
          * @param value hodnota k zobrazení
          * @param high maximální hodnota, např.: 255
          */
