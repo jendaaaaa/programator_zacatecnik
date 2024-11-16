@@ -147,11 +147,10 @@ namespace zacatecnik {
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
-    //% level.max=1023
-    //% level.min=0
+    //% level.min=0 level.max=100
     //% group="LED"
     export function ledWriteNumber(port: Ports, level: number) {
-        pins.analogWritePin(pseudoanalogPins[port - 1], level);
+        pins.analogWritePin(pseudoanalogPins[port - 1], Math.map(level,0,100,0,1023));
     }
 
     /**
@@ -186,7 +185,7 @@ namespace zacatecnik {
     //% group="Pot"
     export function potReadValue(port: Ports): number {
         if (port != 4) {
-            return 1023 - pins.analogReadPin(analogPins[port - 1]);
+            return 100 - Math.map(pins.analogReadPin(analogPins[port - 1]), 0, 1023, 0, 100);
         }
         return -1;
     }
@@ -227,10 +226,10 @@ namespace zacatecnik {
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
-    //% level.min=0 level.max=1023
+    //% level.min=0 level.max=100
     //% group="Motor"
     export function motorSetLevel(port: Ports, level: number) {
-        pins.analogWritePin(pseudoanalogPins[port - 1], level);
+        pins.analogWritePin(pseudoanalogPins[port - 1], pins.analogReadPin(analogPins[port - 1]));
     }
 
     //////////////////////////////////////////////////////////////////// PHOTORESISTOR,  IR, UV
@@ -282,11 +281,11 @@ namespace zacatecnik {
          * Zobrazí sloupcový graf na základě `hodnoty` a `maxima`.
          * Pokud `maximum` je 0, graf se upraví automaticky.
          * @param value hodnota k zobrazení
-         * @param high maximální hodnota, např.: 255
+         * @param high maximální hodnota, např.: 100
          */
         //% blockId=neo_show_bar_graph block="%neo|zobraz sloupcový graf o hodnotě %value|až po %high"
         //% neo.defl=neo
-        //% high.defl=255
+        //% high.defl=100
         //% blockGap=8
         //% icon="\uf080"
         //% group="Neopixel"
@@ -389,7 +388,7 @@ namespace zacatecnik {
         }
 
         /**
-         * Vrátí počet LED Neopixel bločku.
+         * Vrátí počet pixelů Neopixel bločku.
          */
         //% blockId="neo_length" block="%strip|počet LED"
         //% strip.defl=neo
@@ -405,6 +404,7 @@ namespace zacatecnik {
          */
         //% blockId="neo_brightness" block="%strip|nastavit jas %brightness"
         //% strip.defl=neo
+        //% brightness.min=0 brightness.max=255 brightness.defl=255
         //% group="Neopixel"
         //% advanced=true
         setBrightness(brightness: number): void {
@@ -813,7 +813,7 @@ namespace zacatecnik {
     }
 
     /**
-     * Získání úrovně osvícení okolí. Výstupem je hodnota v rozmezí 0-255.
+     * Rozsvícení přídavné LED na senzoru.
      * @param port číslo portu
      */
     //% block="COLOR rozsviť přídavnou LED $port"
@@ -827,7 +827,7 @@ namespace zacatecnik {
     }
     
     /**
-     * Získání úrovně osvícení okolí. Výstupem je hodnota v rozmezí 0-255.
+     * Zhasnutí přídavné LED na senzoru.
      * @param port číslo portu
      */
     //% block="COLOR zhasni přídavnou LED $port"
