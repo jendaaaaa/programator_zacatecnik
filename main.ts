@@ -529,6 +529,9 @@ namespace zacatecnik {
      */
     //% blockId="neo_rgb" block="červená R %red|zelená G %green|modrá B %blue"
     //% group="Neopixel"
+    //% red.min=0 red.max=255 red.defl=0
+    //% green.min=0 green.max=255 green.defl=0
+    //% blue.min=0 blue.max=255 blue.defl=0
     //% advanced=true
     export function rgb(red: number, green: number, blue: number): number {
         return packRGB(red, green, blue);
@@ -542,6 +545,9 @@ namespace zacatecnik {
      */
     //% blockId=neo_hsl block="odstín H %h|sytost S %s|jas L %l"
     //% group="Neopixel"
+    //% h.min=0 h.max=360
+    //% s.min=0 s.max=99
+    //% l.min=0 l.max=99
     //% advanced=true
     export function hsl(h: number, s: number, l: number): number {
         h = Math.round(h);
