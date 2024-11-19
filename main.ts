@@ -117,6 +117,21 @@ namespace zacatecnik {
     }
 
     /**
+     * Zapsání číselné hodnoty do LED na daném portu v rozmezí 0-1023.
+     * @param port číslo portu
+     * @param level číselná hodnota (0-1023)
+     */
+    //% block="zapiš do LED $port číslo $level"
+    //% port.fieldEditor="gridpicker"
+    //% port.fieldOptions.width=220
+    //% port.fieldOptions.columns=4
+    //% level.min=0 level.max=100
+    //% group="LED"
+    export function ledWriteNumber(port: Ports, level: number) {
+        pins.analogWritePin(pseudoanalogPins[port - 1], Math.map(level,0,100,0,1023));
+    }
+
+    /**
      * Zapsání logické hodnoty do LED na daném portu. (pravda = svítí, lež = nesvítí)
      * @param port číslo portu
      * @param state logická hodnota
@@ -136,21 +151,6 @@ namespace zacatecnik {
             pins.digitalWritePin(digitalPins[port - 1], 0);
             leds[port - 1] = false;
         }
-    }
-
-    /**
-     * Zapsání číselné hodnoty do LED na daném portu v rozmezí 0-1023.
-     * @param port číslo portu
-     * @param level číselná hodnota (0-1023)
-     */
-    //% block="zapiš do LED $port číslo $level"
-    //% port.fieldEditor="gridpicker"
-    //% port.fieldOptions.width=220
-    //% port.fieldOptions.columns=4
-    //% level.min=0 level.max=100
-    //% group="LED"
-    export function ledWriteNumber(port: Ports, level: number) {
-        pins.analogWritePin(pseudoanalogPins[port - 1], Math.map(level,0,100,0,1023));
     }
 
     /**
@@ -199,9 +199,10 @@ namespace zacatecnik {
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
+    //% weight=100
     //% group="Motor"
     export function motorPowerOn(port: Ports) {
-        pins.digitalWritePin(digitalPins[port - 1], 1);
+        ledPlot(port);
     }
 
     /**
@@ -212,9 +213,10 @@ namespace zacatecnik {
     //% port.fieldEditor="gridpicker"
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
+    //% weight=90
     //% group="Motor"
     export function motorPowerOff(port: Ports) {
-        pins.digitalWritePin(digitalPins[port - 1], 0);
+        ledUnplot(port);
     }
 
     /**
@@ -227,9 +229,46 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% level.min=0 level.max=100
+    //% weight=80
     //% group="Motor"
     export function motorSetLevel(port: Ports, level: number) {
-        pins.analogWritePin(pseudoanalogPins[port - 1], pins.analogReadPin(analogPins[port - 1]));
+        ledWriteNumber(port, level);
+    }
+
+    /**
+     * Zapsání logické hodnoty do motoru na daném portu. (pravda = zapnuto, lež = vypnuto)
+     * @param port číslo portu
+     * @param state logická hodnota
+     */
+    //% block="zapni motor $port? $state"
+    //% port.fieldEditor="gridpicker"
+    //% port.fieldOptions.width=220
+    //% port.fieldOptions.columns=4
+    //% group="Motor"
+    //% weight=10
+    //% advanced=true
+    export function motorWriteBool(port: Ports, state: boolean) {
+        if (state == true) {
+            pins.digitalWritePin(digitalPins[port - 1], 1);
+            leds[port - 1] = true;
+        } else {
+            pins.digitalWritePin(digitalPins[port - 1], 0);
+            leds[port - 1] = false;
+        }
+    }
+
+    /**
+     * Přepnutí motoru na daném portu. Pokud je motor zapnut, po zavolání této funkce se vypne (a naopak).
+     * @param port číslo portu
+     */
+    //% block="přepni motor $port"
+    //% port.fieldEditor="gridpicker"
+    //% port.fieldOptions.width=220
+    //% port.fieldOptions.columns=4
+    //% group="Motor"
+    //% advanced=true
+    export function motorToggle(port: Ports) {
+        ledToggle(port);
     }
 
     //////////////////////////////////////////////////////////////////// PHOTORESISTOR,  IR, UV
@@ -244,6 +283,20 @@ namespace zacatecnik {
     //% group="Optický a UV senzor"
     export function opticalSensorRead(port: Ports): boolean {
         return pins.digitalReadPin(digitalPins[port - 1]) == 0 ? true : false;
+    }
+    
+    /**
+     * Čtení logické hodnoty ze senzorů v číselném formátu. Bločky vhodné k použití: Světelný senzor, IR senzor, UV senzor.
+     * @param port číslo portu
+     */
+    //% block="hodnota senzoru $port"
+    //% port.fieldEditor="gridpicker"
+    //% port.fieldOptions.width=220
+    //% port.fieldOptions.columns=4
+    //% group="Optický a UV senzor"
+    //% advanced=true
+    export function opticalSensorReadNumber(port: Ports): number {
+        return pins.digitalReadPin(digitalPins[port - 1]);
     }
 
     //////////////////////////////////////////////////////////////////// NEOPIXEL
