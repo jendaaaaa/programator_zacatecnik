@@ -54,7 +54,7 @@ const analogPins = [AnalogPin.P2, AnalogPin.P1, AnalogPin.P0, AnalogPin.P3];
  * Provides easier use of basic hardware modules available at omgrobotics.com.
  */
 //% color=#f5a017 icon="\uf135" block="Začátečník"
-//% groups="['Tlačítko', 'LED', 'Potenciometr', 'Motor', 'Optický a UV senzor', 'BME', 'Senzor barvy', 'OLED', 'Neopixel']"
+//% groups="['Tlačítko', 'Potenciometr', 'LED', 'Motor', 'Optický a UV senzor', 'BME', 'Senzor barvy', 'OLED', 'Neopixel']"
 namespace zacatecnik {
 
     //////////////////////////////////////////////////////////////////// BUTTON
