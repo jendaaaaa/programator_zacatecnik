@@ -738,11 +738,11 @@ namespace zacatecnik {
      * @param num počet řádků
      */
     //% block="OLED vykreslení $num prázdných řádků"
-    //% num.min=1 num.max = 8 num.defl=1
+    //% num.min=1 num.max=8 num.defl=1
     //% group="OLED"
-    export function oledEmptyLines(num: number) {
+    export function oledEmptyLines(num: number = 1) {
         for (let i = 0; i < num; i++){
-            OLED.writeStringNewLine("");
+            OLED.writeStringNewLine(" ");
         }
     }
 
