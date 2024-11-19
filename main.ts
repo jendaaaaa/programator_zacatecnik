@@ -97,7 +97,7 @@ namespace zacatecnik {
     //% group="Pot"
     export function potReadValue(port: Ports): number {
         if (port != 4) {
-            return 100 - Math.trunc(Math.map(pins.analogReadPin(analogPins[port - 1]), 0, 1023, 0, 100));
+            return 100 - Math.ceil(Math.map(pins.analogReadPin(analogPins[port - 1]), 0, 1023, 0, 100));
         }
         return -1;
     }
