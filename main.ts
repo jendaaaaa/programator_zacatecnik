@@ -324,7 +324,6 @@ namespace zacatecnik {
         //% blockId="neo_clear" block="%neo|vypnout"
         //% neo.defl=neo
         //% group="Neopixel"
-        //% advanced=true
         clear(): void {
             this.buf.fill(0, this.start * 3, this._length * 3);
             this.show();
