@@ -374,10 +374,10 @@ namespace zacatecnik {
          * @param startHue počáteční hodnota odstínu duhy, např.: 1
          * @param endHue konečná hodnota odstínu duhy, např.: 360
          */
-        //% blockId="neo_set_strip_rainbow" block="%neo|| zobrazit duhu s odstínem od %startHue|do %endHue"
+        //% blockId="neo_set_strip_rainbow" block="%neo || zobrazit duhu s odstínem od %startHue|do %endHue"
         //% blockGap=8
-        //% neo.defl=neo
         //% expandableArgumentMode="toggle"
+        //% neo.defl=neo
         //% startHue.min=1 startHue.max=360 startHue.defl=1
         //% endHue.min=1 endHue.max=360 endHue.defl=360
         //% group="Neopixel"
