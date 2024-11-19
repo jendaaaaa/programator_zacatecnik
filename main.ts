@@ -733,6 +733,19 @@ namespace zacatecnik {
         OLED.clear();
     }
 
+    /**
+     * Vyplnění daného počtu řádků prázdným textem.
+     * @param num počet řádků
+     */
+    //% block="OLED vykreslení $num prázdných řádků"
+    //% num.min=1 num.max = 8 num.defl=1
+    //% group="OLED"
+    export function oledEmptyLines(num: number) {
+        for (let i = 0; i < num; i++){
+            OLED.writeStringNewLine("");
+        }
+    }
+
     // helper function
     function fillWithBlanks(str: string): string {
         let padding = '';
