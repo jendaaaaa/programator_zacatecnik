@@ -676,6 +676,7 @@ namespace zacatecnik {
      * Zapnutí (inicializace) OLED bločku a aktivování I2C komunikace.
      */
     //% block="OLED start"
+    //% weight=100
     //% group="OLED"
     export function oledInit() {
         OLED.init(128, 64);
@@ -746,6 +747,7 @@ namespace zacatecnik {
      * Zapnutí (inicializace) BME bločku a aktivování I2C komunikace.
      */
     //% block="BME start"
+    //% weight=100
     //% group="BME"
     export function bmeInit() {
         BME280.Address(BME280_I2C_ADDRESS.ADDR_0x76);
@@ -821,6 +823,7 @@ namespace zacatecnik {
      * Zapnutí (inicializace) COLOR bločku (senzoru barvy) a aktivování I2C komunikace.
      */
     //% block="COLOR start"
+    //% weight=100
     //% group="Senzor barvy"
     export function apdsInit() {
         apds9960.Init(11.12);
