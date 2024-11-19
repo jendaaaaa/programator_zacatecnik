@@ -897,7 +897,6 @@ namespace zacatecnik {
     //% port.fieldOptions.width=220
     //% port.fieldOptions.columns=4
     //% group="Senzor barvy"
-    //% advanced=true
     export function apdsLedPowerOn(port: Ports) {
         pins.digitalWritePin(digitalPins[port-1], 1);
     }
