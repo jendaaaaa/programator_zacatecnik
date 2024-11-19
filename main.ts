@@ -885,7 +885,7 @@ namespace zacatecnik {
                 value = apds9960.Read_Blue();
                 break;
         };
-        return Math.map(Math.floor(value*1000)/1000, 0, 4097, 0, 255);
+        return Math.floor(Math.map(value, 0, 4097, 0, 255)*1000)/1000;
     }
 
     /**
