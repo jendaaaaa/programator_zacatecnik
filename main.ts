@@ -85,6 +85,23 @@ namespace zacatecnik {
         return 1 - pins.digitalReadPin(digitalPins[port - 1]);
     }
 
+    //////////////////////////////////////////////////////////////////// POTENTIOMETER
+    /**
+     * Čtení hodnoty potenciometru na daném portu v rozmezí 0-1023.
+     * @param port číslo portu
+     */
+    //% block="číslo z potenciometru $port"
+    //% port.fieldEditor="gridpicker"
+    //% port.fieldOptions.width=220
+    //% port.fieldOptions.columns=4
+    //% group="Pot"
+    export function potReadValue(port: Ports): number {
+        if (port != 4) {
+            return 100 - Math.map(pins.analogReadPin(analogPins[port - 1]), 0, 1023, 0, 100);
+        }
+        return -1;
+    }
+
     //////////////////////////////////////////////////////////////////// LED
     /**
      * Rozsvícení LED na daném portu.
@@ -171,23 +188,6 @@ namespace zacatecnik {
             pins.digitalWritePin(digitalPins[port - 1], 1);
             leds[port - 1] = true;
         }
-    }
-
-    //////////////////////////////////////////////////////////////////// POTENTIOMETER
-    /**
-     * Čtení hodnoty potenciometru na daném portu v rozmezí 0-1023.
-     * @param port číslo portu
-     */
-    //% block="číslo z potenciometru $port"
-    //% port.fieldEditor="gridpicker"
-    //% port.fieldOptions.width=220
-    //% port.fieldOptions.columns=4
-    //% group="Pot"
-    export function potReadValue(port: Ports): number {
-        if (port != 4) {
-            return 100 - Math.map(pins.analogReadPin(analogPins[port - 1]), 0, 1023, 0, 100);
-        }
-        return -1;
     }
 
     //////////////////////////////////////////////////////////////////// MOTOR
