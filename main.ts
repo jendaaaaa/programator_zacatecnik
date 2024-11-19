@@ -864,7 +864,7 @@ namespace zacatecnik {
     //% block="COLOR úroveň osvícení"
     //% group="Senzor barvy"
     export function apdsGetAmbient(): number {
-        return Math.floor(apds9960.Read_Ambient()*1000)/1000;
+        return Math.floor(Math.map(apds9960.Read_Ambient(), 0, 4097, 0, 255)*1000)/1000;
     }
     
     /**
@@ -885,7 +885,7 @@ namespace zacatecnik {
                 value = apds9960.Read_Blue();
                 break;
         };
-        return Math.floor(value*1000)/1000;
+        return Math.floor(Math.map(value,0,4097,0,255)*1000)/1000;
     }
 
     /**
