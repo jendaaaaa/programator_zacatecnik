@@ -336,7 +336,7 @@ namespace zacatecnik {
          * @param value hodnota k zobrazení
          * @param high maximální hodnota, např.: 100
          */
-        //% blockId=neo_show_bar_graph block="%neo|zobraz sloupcový graf o hodnotě %value|až po %high"
+        //% blockId=neo_show_bar_graph block="%neo |zobraz sloupcový graf o hodnotě %value|až po %high"
         //% neo.defl=neo
         //% high.defl=100
         //% blockGap=8
@@ -374,7 +374,7 @@ namespace zacatecnik {
          * @param startHue počáteční hodnota odstínu duhy, např.: 1
          * @param endHue konečná hodnota odstínu duhy, např.: 360
          */
-        //% blockId="neo_set_strip_rainbow" block="%neo || zobrazit duhu s odstínem od %startHue|do %endHue"
+        //% blockId="neo_set_strip_rainbow" block="%neo zobrazit duhu || s odstínem od %startHue|do %endHue"
         //% blockGap=8
         //% expandableArgumentMode="toggle"
         //% neo.defl=neo
