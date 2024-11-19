@@ -322,6 +322,7 @@ namespace zacatecnik {
          * Zhasnout všechny pixely.
          */
         //% blockId="neo_clear" block="%neo|vypnout"
+        //% blockGap=14
         //% neo.defl=neo
         //% group="Neopixel"
         clear(): void {
@@ -336,9 +337,9 @@ namespace zacatecnik {
          * @param high maximální hodnota, např.: 100
          */
         //% blockId=neo_show_bar_graph block="%neo |zobraz sloupcový graf o hodnotě %value|až po %high"
+        //% blockGap=14
         //% neo.defl=neo
         //% high.defl=100
-        //% blockGap=8
         //% icon="\uf080"
         //% group="Neopixel"
         showBarGraph(value: number, high: number): void {
@@ -374,7 +375,7 @@ namespace zacatecnik {
          * @param endHue konečná hodnota odstínu duhy, např.: 360
          */
         //% blockId="neo_set_strip_rainbow" block="%neo zobrazit duhu || s odstínem od %startHue|do %endHue"
-        //% blockGap=8
+        //% blockGap=14
         //% expandableArgumentMode="toggle"
         //% neo.defl=neo
         //% startHue.min=1 startHue.max=360 startHue.defl=1
