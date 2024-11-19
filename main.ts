@@ -769,7 +769,7 @@ namespace zacatecnik {
     /**
      * Měření vlhkosti okolního vzduchu v procentech (%).
      */
-    //% block="BME vlhkost (%)"
+    //% block="BME vlhkost"
     //% group="BME"
     export function bmeHumidity(): number {
         return BME280.humidity()
