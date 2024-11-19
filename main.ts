@@ -737,7 +737,7 @@ namespace zacatecnik {
      * Vyplnění daného počtu řádků prázdným textem.
      * @param num počet řádků
      */
-    //% block="OLED vykreslení $num prázdných řádků"
+    //% block="OLED vykresli $num prázdných řádků"
     //% num.min=1 num.max=8 num.defl=1
     //% group="OLED"
     export function oledEmptyLines(num: number = 1) {
