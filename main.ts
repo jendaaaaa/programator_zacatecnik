@@ -54,7 +54,7 @@ const analogPins = [AnalogPin.P2, AnalogPin.P1, AnalogPin.P0, AnalogPin.P3];
  * Provides easier use of basic hardware modules available at omgrobotics.com.
  */
 //% color=#f5a017 icon="\uf135" block="Začátečník"
-//% groups="['Tlačítko', 'Potenciometr', 'LED', 'Motor', 'Optický a UV senzor', 'BME', 'Senzor barvy', 'OLED', 'Neopixel']"
+//% groups="['Tlačítko', 'Potenciometr', 'LED', 'Motor', 'Optický senzor', 'UV senzor', 'BME', 'Senzor barvy', 'OLED', 'Neopixel']"
 namespace zacatecnik {
 
     //////////////////////////////////////////////////////////////////// BUTTON
@@ -220,9 +220,9 @@ namespace zacatecnik {
     }
 
     /**
-     * Zapsání číselné hodnoty do motoru na daném portu v rozmezí 0-1023.
+     * Zapsání číselné hodnoty do motoru na daném portu v rozmezí 0-100.
      * @param port číslo portu
-     * @param level číselná hodnota (0-1023)
+     * @param level číselná hodnota (0-100)
      */
     //% block="roztoč motor $port na hodnotu $level"
     //% port.fieldEditor="gridpicker"
@@ -232,7 +232,7 @@ namespace zacatecnik {
     //% weight=80
     //% group="Motor"
     export function motorSetLevel(port: Ports, level: number) {
-        ledWriteNumber(port, level);
+        pins.analogWritePin(pseudoanalogPins[port - 1], Math.map(level, 0, 100, 0, 1023));
     }
 
     /**
@@ -271,9 +271,10 @@ namespace zacatecnik {
         ledToggle(port);
     }
 
-    //////////////////////////////////////////////////////////////////// PHOTORESISTOR,  IR, UV
+    //////////////////////////////////////////////////////////////////// PHOTORESISTOR,  IR
+    
     /**
-     * Čtení logické hodnoty ze senzorů. Bločky vhodné k použití: Světelný senzor, IR senzor, UV senzor.
+     * Čtení logické hodnoty ze senzorů. Bločky vhodné k použití: Světelný senzor, IR senzor.
      * @param port číslo portu
      */
     //% block="hodnota senzoru $port"
@@ -297,6 +298,24 @@ namespace zacatecnik {
     //% advanced=true
     export function opticalSensorReadNumber(port: Ports): number {
         return pins.digitalReadPin(digitalPins[port - 1]);
+    }
+    
+    //////////////////////////////////////////////////////////////////// UV SENSOR
+
+    /**
+     * Čtení hodnoty UV senzoru na daném portu v rozmezí 0-100.
+     * @param port číslo portu
+     */
+    //% block="číslo z UV senzoru $port"
+    //% port.fieldEditor="gridpicker"
+    //% port.fieldOptions.width=220
+    //% port.fieldOptions.columns=4
+    //% group="UV senzor"
+    export function uvReadValue(port: Ports): number {
+        if (port != 4) {
+            return 100 - Math.ceil(Math.map(pins.analogReadPin(analogPins[port - 1]), 0, 1023, 0, 100));
+        }
+        return -1;
     }
 
     //////////////////////////////////////////////////////////////////// NEOPIXEL
